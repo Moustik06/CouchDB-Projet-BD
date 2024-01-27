@@ -39,6 +39,8 @@ public class Location extends CouchDbDocument {
         this._id_parkingRecup = _id_parkingRecup;
         this._id_parkingRendu = _id_parkingRendu;
         this.prix_ttc = prix_ttc;
+
+
     }
 
     public JSONObject generateDocument() {

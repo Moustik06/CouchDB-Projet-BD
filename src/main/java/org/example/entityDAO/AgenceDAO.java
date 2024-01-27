@@ -1,6 +1,7 @@
 package org.example.entityDAO;
 
 import org.ektorp.ViewQuery;
+import org.ektorp.ViewResult;
 import org.ektorp.support.CouchDbDocument;
 import org.ektorp.support.View;
 import org.example.entity.Agence;
@@ -48,35 +49,36 @@ public class AgenceDAO extends BaseDAO {
         return new ArrayList<>(entities);
     }
 
-    // Trier agences par nombre de clients
+    // Trier agences par nombre de clients par ordre decroissant
     public ArrayList<Agence> sortAgencesByNombreClientDec() {
-        // Récupérer toutes les agences
-        ViewQuery query = new ViewQuery().allDocs().includeDocs(true);
-        List<Agence> entities = getDatabase().queryView(query, Agence.class);
+        // Utiliser une vue pour récupérer le nombre de clients par agence
+        ViewQuery query = new ViewQuery().designDocId("_design/Agence").viewName("nombreClients").group(true);
+        List<ViewResult.Row> rows = getDatabase().queryView(query, ViewResult.Row.class);
 
-        // Parcourir chaque agence pour calculer le nombre de clients
-        for (Agence agence : entities) {
-            // Récupérer l'ID de l'agence
-            int idAgence = agence.getId();
+        // Créer une liste pour stocker les agences avec le nombre de clients
+        List<Agence> agences = new ArrayList<>();
 
-            // Effectuer une jointure avec la collection "location" sur le champ "_id_agence"
-            ViewQuery locationQuery = new ViewQuery().designDocId("_design/location").viewName("by_agence").key(idAgence).includeDocs(true);
-            List<Location> locations = getDatabase().queryView(locationQuery, Location.class);
+        // Parcourir les résultats de la vue et créer des objets Agence avec le nombre de clients
+        for (ViewResult.Row row : rows) {
+            //afficher row
+            System.out.println(row);
+            String agenceId = row.getKey();
+            int nombreClients = row.getValueAsInt();
 
-            // Effectuer une jointure avec la collection "facture" sur le champ "_id_location"
-            for (Location location : locations) {
-                int idLocation = location.getId();
-                ViewQuery factureQuery = new ViewQuery().designDocId("_design/facture").viewName("by_location").key(idLocation).includeDocs(true);
-                List<Facture> factures = getDatabase().queryView(factureQuery, Facture.class);
+            // Créer un objet Agence avec l'ID et le nombre de clients
+            Agence agence = new Agence();
+            agence.setId(agenceId);
+            agence.setNombreClients(nombreClients);
 
-                // Ajouter le nombre de clients pour cette agence
-                agence.setNombreClients(agence.getNombreClients() + factures.size());
-            }
+            // Ajouter l'objet Agence à la liste
+            agences.add(agence);
         }
 
         // Trier les agences par nombre de clients en ordre décroissant
-        entities.sort(Comparator.comparingInt(Agence::getNombreClients).reversed());
+        agences.sort(Comparator.comparingInt(Agence::getNombreClients).reversed());
 
-        return new ArrayList<>(entities);
+        return new ArrayList<>(agences);
     }
+
+
 }

@@ -1,4 +1,7 @@
 package org.example.entityDAO;
 
-public class LocationDAO {
+import org.example.entity.Location;
+
+public class LocationDAO extends BaseDAO{
+
 }

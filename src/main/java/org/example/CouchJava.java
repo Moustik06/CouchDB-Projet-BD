@@ -23,10 +23,11 @@ import org.ektorp.impl.StdCouchDbInstance;
 import org.ektorp.impl.StdObjectMapperFactory;
 import org.ektorp.support.CouchDbDocument;
 import org.ektorp.support.DesignDocument;
-import org.example.entity.Agence;
-import org.example.entity.Assurance;
+import org.example.entity.*;
 import org.example.entityDAO.AgenceDAO;
 import org.example.entityDAO.BaseDAO;
+import org.example.entityDAO.ClientDAO;
+import org.example.entityDAO.LocationDAO;
 import org.json.JSONObject;
 
 public class CouchJava {
@@ -56,15 +57,33 @@ public class CouchJava {
         //agenceDAO.insert(agence4);
         //agenceDAO.insert(agence5);
 
+        //creer des clients
+        ClientDAO clientDAO = new ClientDAO();
+        Client client1 = new Client(1,"Jean","Dupont","1 rue du soleil","0123456789","jean.dupont@gmailcom");
+        Client client2 = new Client(2,"Cou","Beh","2 rue du cul","0123456789","cou.beh@gmailcom");
 
-        // getAgenceById
-        //agenceDAO.getAgenceById(1).getData().forEach(System.out::println);
+        //inserer clients
+        clientDAO.insert(client1);
+        clientDAO.insert(client2);
 
-        // sortAgencesByNombreEmploye
-        ArrayList<Agence> agences = agenceDAO.sortAgencesByNombreEmployeDec();
-        for (Agence agence1 : agences) {
-            agence1.getData().forEach(System.out::println);
+        LocationDAO locationDAO = new LocationDAO();
+
+        // Créer des documents Location associés à l'Agence 1
+        Location location1 = new Location(1,1,1,1,1,"7/16/2023","7/9/2023",1,1,225.0);
+        Location location2 = new Location(2,1,2,1,1,"7/18/2023","7/11/2023",1,1,223.0);
+
+        // inserer les locations
+        //locationDAO.insert(location1);
+        //locationDAO.insert(location2);
+
+        // Tester la fonction
+        ArrayList<Agence> agencesTriees = agenceDAO.sortAgencesByNombreClientDec();
+
+        // Afficher le résultat
+        for (Agence agenceTriee : agencesTriees) {
+            System.out.println("Agence ID: " + agenceTriee.getId() + ", Nombre de clients: " + agenceTriee.getNombreClients());
         }
+
         BaseDAO.closeConnection();
 
 
