@@ -1,8 +1,12 @@
 package org.example;
 
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.ektorp.CouchDbConnector;
 
 import org.ektorp.CouchDbInstance;
@@ -16,32 +20,34 @@ import org.ektorp.impl.StdCouchDbConnector;
 
 import org.ektorp.impl.StdCouchDbInstance;
 
+import org.ektorp.impl.StdObjectMapperFactory;
+import org.ektorp.support.CouchDbDocument;
 import org.ektorp.support.DesignDocument;
 import org.example.entity.Agence;
 import org.example.entityDAO.AgenceDAO;
+import org.example.entityDAO.BaseDAO;
+import org.json.JSONObject;
 
 public class CouchJava {
 
-    public static void main(String[] args) throws MalformedURLException {
-        CouchDbConnector db = Connector.connect();
+    public static void main(String[] args) throws MalformedURLException, JsonProcessingException {
 
-        int id = 1;
+        AgenceDAO agenceDAO = new AgenceDAO();
 
-        /*
-         * 
-         * // POUR CREATE
-         * agence.setNom("Agence1");
-         * agence.setAdresse("Adresse1");
-         * db.create(String.valueOf(id),agence);
-         */
+        ArrayList<Integer> arr = new ArrayList<Integer>();
+        arr.add(1);
+        arr.add(2);
+        arr.add(3);
+        Agence agence = new Agence(1,arr,1,"Agence du Soleil","1 rue du soleil","0123456789");
 
-        // POUR LIRE
-        try {
-            Agence retrievedAgence = db.get(Agence.class, String.valueOf(id));
-            System.out.println("Agence lue depuis la base de données : " + retrievedAgence.toString());
-        } catch (DocumentNotFoundException e) {
-            System.out.println("Le document avec l'ID " + id + " n'a pas été trouvé dans la base de données.");
-        }
+        agenceDAO.insert(agence);
+
+
+
+        BaseDAO.closeConnection();
+
+
+
 
     }
 
