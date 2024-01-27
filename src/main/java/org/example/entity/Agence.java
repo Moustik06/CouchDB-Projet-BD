@@ -26,6 +26,7 @@ public class Agence extends CouchDbDocument {
     @JsonProperty("telephone")
     private final String telephone;
 
+
     public Agence(int id, ArrayList<Integer> id_employer, int id_parking, String nom, String adresse,
             String telephone) {
         this._id = id;
@@ -36,6 +37,19 @@ public class Agence extends CouchDbDocument {
         this.telephone = telephone;
 
         this.setId(Integer.toString(id));
+    }
+
+    public Agence(){
+        this._id = 0;
+        this._id_employer = new ArrayList<Integer>();
+        this._id_parking = 0;
+        this.nom = "";
+        this.adresse = "";
+        this.telephone = "";
+    }
+
+    public String get_name() {
+        return this.nom;
     }
 
 }
