@@ -1,16 +1,17 @@
 package org.example.entityDAO;
 
+import org.apache.poi.ss.formula.functions.T;
 import org.ektorp.*;
 import org.ektorp.support.CouchDbDocument;
-import org.json.JSONObject;
+// import org.json.JSONObject;
 import java.net.MalformedURLException;
+import java.util.List;
 
 import org.example.Connector;
 
-import javax.swing.text.html.parser.Entity;
+// import javax.swing.text.html.parser.Entity;
 
 public abstract class BaseDAO {
-
 
     private static final CouchDbConnector db;
 
@@ -34,5 +35,13 @@ public abstract class BaseDAO {
         System.out.println(entity);
         db.create(entity);
         System.out.println("ntm");
+    }
+
+    // La méthode findAll nécessite une vue générique pour chaque type d'entité.
+    public List<T> findAll(Class<T> entityClass, String viewName) {
+        ViewQuery query = new ViewQuery().designDocId("_design/" + entityClass.getSimpleName().toLowerCase())
+                .viewName(viewName)
+                .includeDocs(true);
+        return db.queryView(query, entityClass);
     }
 }

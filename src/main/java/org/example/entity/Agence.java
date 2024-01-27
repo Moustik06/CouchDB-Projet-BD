@@ -1,14 +1,14 @@
 package org.example.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeId;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+// import com.fasterxml.jackson.annotation.JsonTypeId;
+// import com.fasterxml.jackson.core.JsonProcessingException;
+// import com.fasterxml.jackson.databind.JsonNode;
+// import com.fasterxml.jackson.databind.ObjectMapper;
 import org.ektorp.support.CouchDbDocument;
-import org.json.JSONObject;
+// import org.json.JSONObject;
 
-import java.io.IOException;
+// import java.io.IOException;
 import java.util.ArrayList;
 
 public class Agence extends CouchDbDocument {
@@ -28,7 +28,6 @@ public class Agence extends CouchDbDocument {
     @JsonProperty("nombreEmploye")
     private int nbEmploye;
 
-
     public Agence(int id, ArrayList<Integer> id_employer, int id_parking, String nom, String adresse,
             String telephone) {
         this._id = id;
@@ -42,7 +41,7 @@ public class Agence extends CouchDbDocument {
         this.setId(Integer.toString(id));
     }
 
-    public Agence(){
+    public Agence() {
         this._id = 0;
         this._id_employer = new ArrayList<Integer>();
         this._id_parking = 0;
@@ -67,7 +66,7 @@ public class Agence extends CouchDbDocument {
         return (U) this.nom;
     }
 
-    //get nb employe
+    // get nb employe
 
     public int getNombreEmploye() {
         return this.nbEmploye;
