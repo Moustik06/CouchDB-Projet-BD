@@ -2,19 +2,17 @@ package org.example.entity;
 
 import org.json.JSONObject;
 
-public class Facture extends BaseEntity {
-    /*
-     * _id
-     * _id location
-     * date
-     * total ttc
-     * acquitté
-     */
+public class Facture extends CouchDbDocument {
 
+    @JsonProperty("_id")
     private final int _id;
+    @JsonProperty("idLocation")
     private final int _idLocation;
+    @JsonProperty("date")
     private final String date;
+    @JsonProperty("totalTTC")
     private final double totalTTC;
+    @JsonProperty("acquitte")
     private final boolean acquitte;
 
     public Facture(int _id, int _idLocation, String date, double totalTTC, boolean acquitte) {
@@ -25,7 +23,6 @@ public class Facture extends BaseEntity {
         this.acquitte = acquitte;
     }
 
-    @Override
     public JSONObject generateDocument() {
         JSONObject doc = new JSONObject();
         doc.put("_id", this._id);

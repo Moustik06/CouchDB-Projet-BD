@@ -2,14 +2,21 @@ package org.example.entity;
 
 import org.json.JSONObject;
 
-public class Employer extends BaseEntity {
+public class Employer extends CouchDbDocument {
 
+    @JsonProperty("_id")
     private final int _id;
+    @JsonProperty("id_agence")
     private final int _id_agence;
+    @JsonProperty("nom")
     private final String nom;
+    @JsonProperty("prenom")
     private final String prenom;
+    @JsonProperty("adresse")
     private final String adresse;
+    @JsonProperty("tel")
     private final String tel;
+    @JsonProperty("emploi")
     private final String emploi;
 
     public Employer(int _id, int _id_agence, String nom, String prenom, String adresse, String tel, String emploi) {
@@ -22,7 +29,6 @@ public class Employer extends BaseEntity {
         this.emploi = emploi;
     }
 
-    @Override
     public JSONObject generateDocument() {
         JSONObject doc = new JSONObject();
         doc.put("_id", this._id);
