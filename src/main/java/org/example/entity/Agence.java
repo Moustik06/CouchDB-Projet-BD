@@ -48,8 +48,5 @@ public class Agence extends CouchDbDocument {
         this.telephone = "";
     }
 
-    public String get_name() {
-        return this.nom;
-    }
 
 }
