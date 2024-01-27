@@ -41,16 +41,27 @@ public class CouchJava {
         arr.add(3);
         Agence agence = new Agence(1,arr,1,"Agence du Soleil","1 rue du soleil","0123456789");
         Agence agence2 = new Agence(2,arr,1,"Agence du Soleil2222","1 rue du soleil","0123456789");
+        Agence agence3 = new Agence(3,arr,1,"AAAAAAAAAAAAAAAa","rue du aaaaaaaaaaaaaa","0123456789");
+        arr.add(4);
+        arr.add(5);
+        Agence agence4 = new Agence(4,arr,1,"BBBBBBBBBBBBBBBB","rue du bbbbbbbbbbbbb","0123456789");
+
         Assurance assurance = new Assurance(2,1,"Assurance","Assurance du Soleil",100.0);
 
 
         //agenceDAO.insert(agence);
         //agenceDAO.insert(agence2);
+        //agenceDAO.insert(agence3);
+        //agenceDAO.insert(agence4);
 
         // getAgenceById
+        //agenceDAO.getAgenceById(1).getData().forEach(System.out::println);
 
-        agenceDAO.getAgenceById(1).getData().forEach(System.out::println);
-
+        // sortAgencesByNombreEmploye
+        ArrayList<Agence> agences = agenceDAO.sortAgencesByNombreEmploye();
+        for (Agence agence1 : agences) {
+            agence1.getData().forEach(System.out::println);
+        }
         BaseDAO.closeConnection();
 
 
