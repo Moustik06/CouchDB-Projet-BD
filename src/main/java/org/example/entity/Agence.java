@@ -38,7 +38,6 @@ public class Agence extends CouchDbDocument {
 
         this.setId(Integer.toString(id));
     }
-
     public Agence(){
         this._id = 0;
         this._id_employer = new ArrayList<Integer>();
@@ -46,10 +45,16 @@ public class Agence extends CouchDbDocument {
         this.nom = "";
         this.adresse = "";
         this.telephone = "";
+
     }
 
-    public String get_name() {
-        return this.nom;
+    public ArrayList<String> getData() {
+        ArrayList<String> data = new ArrayList<String>();
+        data.add(Integer.toString(this._id));
+        data.add(this.nom);
+        data.add(this.adresse);
+        data.add(this.telephone);
+        return data;
     }
 
 }
