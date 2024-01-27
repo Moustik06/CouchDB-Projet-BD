@@ -17,7 +17,6 @@ import org.example.Connector;
 
 public abstract class BaseDAO {
 
-
     private static final CouchDbConnector db;
 
     static {
@@ -66,14 +65,12 @@ public abstract class BaseDAO {
         }
     }
 
-
     public void update(String id , JSONObject entity) {
         CouchDbDocument doc = db.get(CouchDbDocument.class, id);
         entity.put("_id", id);
         entity.put("_rev", db.getCurrentRevision(id));
         db.update(entity);
     }
-
 
 
 
