@@ -31,8 +31,8 @@ public abstract class BaseDAO {
     }
 
     public void insert(CouchDbDocument entity) {
+        System.out.println(entity);
         db.create(entity);
-
-
+        System.out.println("ntm");
     }
 }

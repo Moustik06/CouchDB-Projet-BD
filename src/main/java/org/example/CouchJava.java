@@ -40,21 +40,16 @@ public class CouchJava {
         arr.add(2);
         arr.add(3);
         Agence agence = new Agence(1,arr,1,"Agence du Soleil","1 rue du soleil","0123456789");
+        Agence agence2 = new Agence(2,arr,2,"T mort, t mort","2 rue de t mort","1234567890");
         Assurance assurance = new Assurance(2,1,"Assurance","Assurance du Soleil",100.0);
 
-
-        // getAgenceById
-        System.out.println(agenceDAO.getAgenceById(1).get_name());
-
-
-
-
+        // createAgence
+        agenceDAO.insert(agence);
+        agenceDAO.insert(agence2);
 
 
 
         BaseDAO.closeConnection();
-
-
 
 
     }
