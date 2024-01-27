@@ -1,5 +1,7 @@
 package org.example.entity;
 
+import com.fasterxml.jackson.annotation.*;
+import org.ektorp.support.CouchDbDocument;
 import org.json.JSONObject;
 
 public class Parking extends CouchDbDocument {

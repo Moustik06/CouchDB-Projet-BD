@@ -4,17 +4,24 @@ import org.ektorp.CouchDbInstance;
 import org.ektorp.ViewQuery;
 import org.ektorp.http.StdHttpClient;
 import org.ektorp.UpdateConflictException;
+import org.ektorp.impl.StdCouchDbConnector;
 import org.ektorp.impl.StdCouchDbInstance;
 import org.ektorp.support.CouchDbDocument;
 import org.ektorp.support.CouchDbRepositorySupport;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONObject;
+
 public class VehiculeDAO {
+    /*
     @Override
     public void createIndexes() {
         CouchDbConnector db = new StdCouchDbConnector("vehicule", new StdCouchDbInstance(new StdHttpClient.Builder().url("http://admin:admin@localhost:5984").build()));
-        db.createIndex("marque", "marque", "json");
-        db.createIndex("modele", "modele", "json");
-        db.createIndex("plaque_imat", "plaque_imat", "json");
+        db.create("marque", "marque", "json");
+        db.create("modele", "modele", "json");
+        db.create("plaque_imat", "plaque_imat", "json");
     }
     public ArrayList<JSONObject> findByCriteria(String marque, String modele, String plaque_imat) {
         CouchDbConnector db = new StdCouchDbConnector("vehicule", new StdCouchDbInstance(new StdHttpClient.Builder().url("http://admin:admin@localhost:5984").build()));
@@ -84,5 +91,5 @@ public class VehiculeDAO {
             db.update(doc);
         }
     }
-
+    */
 }

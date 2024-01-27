@@ -1,7 +1,8 @@
 package org.example.entity;
 
+import com.fasterxml.jackson.annotation.*;
+import org.ektorp.support.CouchDbDocument;
 import org.json.JSONObject;
-
 public class Assurance extends CouchDbDocument {
 
     @JsonProperty("_id")
@@ -21,6 +22,8 @@ public class Assurance extends CouchDbDocument {
         this.type = type;
         this.nom_assurance = nom_assurance;
         this.prix_assurance = prix_assurance;
+
+        this.setId(Integer.toString(_id));
     }
 
     public JSONObject generateDocument() {

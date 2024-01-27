@@ -24,6 +24,7 @@ import org.ektorp.impl.StdObjectMapperFactory;
 import org.ektorp.support.CouchDbDocument;
 import org.ektorp.support.DesignDocument;
 import org.example.entity.Agence;
+import org.example.entity.Assurance;
 import org.example.entityDAO.AgenceDAO;
 import org.example.entityDAO.BaseDAO;
 import org.json.JSONObject;
@@ -39,8 +40,9 @@ public class CouchJava {
         arr.add(2);
         arr.add(3);
         Agence agence = new Agence(1,arr,1,"Agence du Soleil","1 rue du soleil","0123456789");
+        Assurance assurance = new Assurance(2,1,"Assurance","Assurance du Soleil",100.0);
 
-        agenceDAO.insert(agence);
+        agenceDAO.insert(assurance);
 
 
 

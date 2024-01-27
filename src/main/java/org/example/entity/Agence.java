@@ -38,14 +38,4 @@ public class Agence extends CouchDbDocument {
         this.setId(Integer.toString(id));
     }
 
-    public JSONObject generateDocument() {
-        JSONObject json = new JSONObject();
-        json.put("_id", this._id);
-        json.put("id_employer", this._id_employer);
-        json.put("id_parking", this._id_parking);
-        json.put("nom", this.nom);
-        json.put("adresse", this.adresse);
-        json.put("telephone", this.telephone);
-        return json;
-    }
 }
