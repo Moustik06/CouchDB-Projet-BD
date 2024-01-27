@@ -38,6 +38,7 @@ public class Agence extends CouchDbDocument {
 
         this.setId(Integer.toString(id));
     }
+
     public Agence(){
         this._id = 0;
         this._id_employer = new ArrayList<Integer>();
