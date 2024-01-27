@@ -45,7 +45,8 @@ public class CouchJava {
         arr.add(4);
         arr.add(5);
         Agence agence4 = new Agence(4,arr,1,"BBBBBBBBBBBBBBBB","rue du bbbbbbbbbbbbb","0123456789");
-
+        arr.remove(4);
+        Agence agence5 = new Agence(5,arr,1,"CCCCCCCCCCCCCCCC","rue du ccccccccccccc","0123456789");
         Assurance assurance = new Assurance(2,1,"Assurance","Assurance du Soleil",100.0);
 
 
@@ -53,12 +54,14 @@ public class CouchJava {
         //agenceDAO.insert(agence2);
         //agenceDAO.insert(agence3);
         //agenceDAO.insert(agence4);
+        //agenceDAO.insert(agence5);
+
 
         // getAgenceById
         //agenceDAO.getAgenceById(1).getData().forEach(System.out::println);
 
         // sortAgencesByNombreEmploye
-        ArrayList<Agence> agences = agenceDAO.sortAgencesByNombreEmploye();
+        ArrayList<Agence> agences = agenceDAO.sortAgencesByNombreEmployeDec();
         for (Agence agence1 : agences) {
             agence1.getData().forEach(System.out::println);
         }

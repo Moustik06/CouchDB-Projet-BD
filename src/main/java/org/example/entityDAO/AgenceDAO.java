@@ -26,8 +26,7 @@ public class AgenceDAO extends BaseDAO {
         return new ArrayList<>(entities);
     }
 
-    // Trier agences par nombre d'employés
-    // Trier agences par nombre d'employés
+    // Trier agences par nombre d'employés par ordre croisaant
     public ArrayList<Agence> sortAgencesByNombreEmploye() {
         ViewQuery query = new ViewQuery().allDocs().includeDocs(true);
         List<Agence> entities = getDatabase().queryView(query, Agence.class);
@@ -38,11 +37,46 @@ public class AgenceDAO extends BaseDAO {
         return new ArrayList<>(entities);
     }
 
-    //trier agence par nombre de client
-    public ArrayList<JSONObject> sortAgencesByNombreClient() {
+    // Trier agences par nombre d'employés par ordre decroissant
+    public ArrayList<Agence> sortAgencesByNombreEmployeDec() {
         ViewQuery query = new ViewQuery().allDocs().includeDocs(true);
-        List<JSONObject> entities = getDatabase().queryView(query, JSONObject.class);
+        List<Agence> entities = getDatabase().queryView(query, Agence.class);
+
+        // Trier les agences par nombre d'employés de manière décroissante
+        entities.sort(Comparator.comparing(Agence::getNombreEmploye).reversed());
+
         return new ArrayList<>(entities);
     }
 
+    // Trier agences par nombre de clients
+    public ArrayList<Agence> sortAgencesByNombreClientDec() {
+        // Récupérer toutes les agences
+        ViewQuery query = new ViewQuery().allDocs().includeDocs(true);
+        List<Agence> entities = getDatabase().queryView(query, Agence.class);
+
+        // Parcourir chaque agence pour calculer le nombre de clients
+        for (Agence agence : entities) {
+            // Récupérer l'ID de l'agence
+            int idAgence = agence.getId();
+
+            // Effectuer une jointure avec la collection "location" sur le champ "_id_agence"
+            ViewQuery locationQuery = new ViewQuery().designDocId("_design/location").viewName("by_agence").key(idAgence).includeDocs(true);
+            List<Location> locations = getDatabase().queryView(locationQuery, Location.class);
+
+            // Effectuer une jointure avec la collection "facture" sur le champ "_id_location"
+            for (Location location : locations) {
+                int idLocation = location.getId();
+                ViewQuery factureQuery = new ViewQuery().designDocId("_design/facture").viewName("by_location").key(idLocation).includeDocs(true);
+                List<Facture> factures = getDatabase().queryView(factureQuery, Facture.class);
+
+                // Ajouter le nombre de clients pour cette agence
+                agence.setNombreClients(agence.getNombreClients() + factures.size());
+            }
+        }
+
+        // Trier les agences par nombre de clients en ordre décroissant
+        entities.sort(Comparator.comparingInt(Agence::getNombreClients).reversed());
+
+        return new ArrayList<>(entities);
+    }
 }
