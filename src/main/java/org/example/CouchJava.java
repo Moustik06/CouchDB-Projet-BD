@@ -27,7 +27,6 @@ public class CouchJava {
 
         int id = 1;
 
-        Agence agence = new Agence();
         /*
          * 
          * // POUR CREATE

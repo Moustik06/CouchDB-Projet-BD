@@ -7,88 +7,42 @@ import org.ektorp.UpdateConflictException;
 import org.ektorp.impl.StdCouchDbInstance;
 import org.ektorp.support.CouchDbDocument;
 import org.ektorp.support.CouchDbRepositorySupport;
+import org.example.entity.Agence;
 import org.json.JSONObject;
 import java.net.MalformedURLException;
 import java.util.List;
+import org.example.Connector;
 
-public abstract class BaseDAO<T extends CouchDbDocument> {
-    private static final CouchDbInstance dbInstance;
-    private static CouchDbConnector dbConnector;
+public abstract class BaseDAO {
+
+
+    private static final CouchDbConnector db;
 
     static {
-        CouchDbInstance tempDbInstance = null;
         try {
-            // Initialize the CouchDB connection
-            tempDbInstance = new StdCouchDbInstance(new StdHttpClient.Builder().url("http://localhost:5984").build());
-            dbConnector = tempDbInstance.createConnector("projetdb", true);
-        } catch (Exception e) {
-            e.printStackTrace(); // Handle the exception according to your needs
+            db = Connector.connect();
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
         }
-        dbInstance = tempDbInstance;
     }
 
-    protected static CouchDbConnector getConnector() {
-        return dbConnector;
+    protected static CouchDbConnector getDatabase() {
+        return db;
     }
 
     public static void closeConnection() {
-        // Not typically needed with CouchDB but can be implemented if necessary.
+        db.getConnection().shutdown();
     }
 
-    public void insert(T entity) {
+    public void insert(CouchDbDocument entity) {
         try {
-            // Convert the entity to a JSONObject
-            JSONObject doc = new JSONObject(entity);
-
-            // Create a repository to manage database operations
-            CouchDbRepositorySupport<T> repository = new CouchDbRepositorySupport<T>(getEntityClass(), dbConnector) {
-            };
-
-            // Add the document to the database
-            repository.add(entity);
+            db.create(entity);
         } catch (UpdateConflictException e) {
-            System.err.println("Conflict during insertion: " + e.getMessage());
-        } catch (Exception e) {
-            System.err.println("Error during insertion: " + e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 
-    public T find(String id, String collectionName) {
-        CouchDbRepositorySupport<T> repository = new CouchDbRepositorySupport<T>(getEntityClass(), dbConnector) {
-        };
-        return repository.get(id);
-    }
 
-    public List<T> findAll(String collectionName) {
-        CouchDbRepositorySupport<T> repository = new CouchDbRepositorySupport<T>(getEntityClass(), dbConnector) {
-        };
-        return repository.getAll();
-    }
 
-    public void delete(String id, String collectionName) {
-        T entity = find(id, collectionName);
-        if (entity != null) {
-            CouchDbRepositorySupport<T> repository = new CouchDbRepositorySupport<T>(getEntityClass(), dbConnector) {
-            };
-            repository.remove(entity);
-        }
-    }
 
-    public void update(String id, JSONObject updatedFields, String collectionName) {
-        T entity = find(id, collectionName);
-        if (entity != null) {
-            updateEntityWithJson(entity, updatedFields);
-            CouchDbRepositorySupport<T> repository = new CouchDbRepositorySupport<T>(getEntityClass(), dbConnector) {
-            };
-            repository.update(entity);
-        }
-    }
-
-    protected abstract Class<T> getEntityClass();
-
-    protected abstract void updateEntityWithJson(T entity, JSONObject json);
-
-    public abstract void createIndexes();
-
-    public abstract List<T> findByCriteria(JSONObject criteria);
 }
