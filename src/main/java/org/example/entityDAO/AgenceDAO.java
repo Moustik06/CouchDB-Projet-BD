@@ -1,30 +1,46 @@
 package org.example.entityDAO;
 
 import org.ektorp.CouchDbConnector;
+import org.ektorp.ViewQuery;
 import org.ektorp.support.CouchDbRepositorySupport;
-import org.example.enitty.Agence;
+import org.ektorp.support.View;
+import org.example.entity.Agence;
+import org.json.JSONObject;
 
-public class AgenceDAO extends CouchDbRepositorySupport<Agence> {
+import java.util.ArrayList;
+import java.util.List;
 
-    private static int id = 0;
-    public AgenceDAO(Class<Agence> type, CouchDbConnector db) {
-        super(type, db);
+public class AgenceDAO extends BaseDAO<Agence> {
+
+    public AgenceDAO(CouchDbConnector db) {
+        super(db, Agence.class);
     }
 
-    // Méthodes CRUD spécifiques à Agence
-    public Agence findById(String id) {
-        return db.get(Agence.class, id);
+    @Override
+    protected Agence convertJsonToEntity(JSONObject json, String collectionName) {
+        // Convertir le JSONObject en une entité Agence
+        // Implémentez cette méthode en fonction de la structure de votre entité
+        return new Agence();
     }
 
-    public void addAgence(Agence agence) {
-        db.create(agence);
+    @Override
+    public void createIndexes() {
+        // CouchDB utilise des vues pour indexer les données
+        // Créer des vues dans CouchDB pour les index nécessaires
     }
 
-    public void updateAgence(Agence agence) {
-        db.update(agence);
+    @Override
+    public List<Agence> findByCriteria(JSONObject criteria) {
+        // Utiliser des vues ou des requêtes pour filtrer les données selon les critères
+        return new ArrayList<>();
     }
 
-    public void deleteAgence(Agence agence) {
-        db.delete(agence);
+    @View(name = "all", map = "function(doc) { if (doc.type == 'Agence') emit(null, doc) }")
+    public List<Agence> findAll() {
+        ViewQuery query = createQuery("all").includeDocs(true);
+        return db.queryView(query, Agence.class);
     }
+
+    // D'autres méthodes comme find, delete, update, etc. suivent le même modèle que
+    // dans BaseDAO
 }

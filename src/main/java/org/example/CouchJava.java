@@ -17,7 +17,7 @@ import org.ektorp.impl.StdCouchDbConnector;
 import org.ektorp.impl.StdCouchDbInstance;
 
 import org.ektorp.support.DesignDocument;
-import org.example.enitty.Agence;
+import org.example.entity.Agence;
 import org.example.entityDAO.AgenceDAO;
 
 public class CouchJava {
@@ -29,12 +29,12 @@ public class CouchJava {
 
         Agence agence = new Agence();
         /*
-
-        // POUR CREATE
-        agence.setNom("Agence1");
-        agence.setAdresse("Adresse1");
-        db.create(String.valueOf(id),agence);
-        */
+         * 
+         * // POUR CREATE
+         * agence.setNom("Agence1");
+         * agence.setAdresse("Adresse1");
+         * db.create(String.valueOf(id),agence);
+         */
 
         // POUR LIRE
         try {
@@ -43,7 +43,6 @@ public class CouchJava {
         } catch (DocumentNotFoundException e) {
             System.out.println("Le document avec l'ID " + id + " n'a pas été trouvé dans la base de données.");
         }
-
 
     }
 
