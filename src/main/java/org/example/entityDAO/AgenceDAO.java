@@ -11,4 +11,11 @@ import java.util.List;
 
 public class AgenceDAO extends BaseDAO {
 
+    public ArrayList<JSONObject> sortAgencesByNom() {
+        ViewQuery query = new ViewQuery().allDocs().includeDocs(true);
+        List<JSONObject> entities = getDatabase().queryView(query, JSONObject.class);
+        return new ArrayList<>(entities);
+    }
+
+
 }
