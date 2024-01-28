@@ -131,6 +131,7 @@ public class CouchJava {
             vehiculeDAO.insert(vehicule);
         }*/
 
+        /*
         List<Employer> employers = employerDAO.getEmployersSortedByJob();
         for (Employer employer : employers) {
             System.out.println(employer.getData());
