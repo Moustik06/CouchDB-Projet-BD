@@ -40,6 +40,7 @@ public class Location extends CouchDbDocument {
         this._id_parkingRendu = _id_parkingRendu;
         this.prix_ttc = prix_ttc;
 
+        this.setId(Integer.toString(_id));
 
     }
 

@@ -1,4 +1,4 @@
 package org.example.entityDAO;
 
-public class EmployerDAO {
+public class EmployerDAO extends BaseDAO{
 }

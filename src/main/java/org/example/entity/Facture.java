@@ -23,6 +23,8 @@ public class Facture extends CouchDbDocument {
         this.date = date;
         this.totalTTC = totalTTC;
         this.acquitte = acquitte;
+
+        this.setId(Integer.toString(_id));
     }
 
     public JSONObject generateDocument() {

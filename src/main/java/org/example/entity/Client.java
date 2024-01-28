@@ -26,6 +26,8 @@ public class Client extends CouchDbDocument {
         this.adresse = adresse;
         this.telephone = telephone;
         this.email = email;
+
+        this.setId(String.valueOf(id));
     }
 
     public JSONObject generateDocument() {

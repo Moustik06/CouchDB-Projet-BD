@@ -1,39 +1,16 @@
 package org.example;
 
-import java.net.MalformedURLException;
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.ektorp.CouchDbConnector;
-
-import org.ektorp.CouchDbInstance;
-
-import org.ektorp.DocumentNotFoundException;
-import org.ektorp.http.HttpClient;
-
-import org.ektorp.http.StdHttpClient;
-
-import org.ektorp.impl.StdCouchDbConnector;
-
-import org.ektorp.impl.StdCouchDbInstance;
-
-import org.ektorp.impl.StdObjectMapperFactory;
-import org.ektorp.support.CouchDbDocument;
-import org.ektorp.support.DesignDocument;
+import org.example.Reader.Reader;
 import org.example.entity.*;
-import org.example.entityDAO.AgenceDAO;
-import org.example.entityDAO.BaseDAO;
-import org.example.entityDAO.ClientDAO;
-import org.example.entityDAO.LocationDAO;
-import org.json.JSONObject;
+import org.example.entityDAO.*;
 
 public class CouchJava {
 
-    public static void main(String[] args) throws MalformedURLException, JsonProcessingException {
-
+    public static void main(String[] args) throws IOException {
+        /*
         AgenceDAO agenceDAO = new AgenceDAO();
 
         ArrayList<Integer> arr = new ArrayList<Integer>();
@@ -88,6 +65,33 @@ public class CouchJava {
 
 
 
+    */
+
+        Reader reader = new Reader();
+        AgenceDAO agenceDAO = new AgenceDAO();
+        AssuranceDAO assuranceDAO = new AssuranceDAO();
+        ClientDAO clientDAO = new ClientDAO();
+        EmployerDAO employerDAO = new EmployerDAO();
+        FactureDAO factureDAO = new FactureDAO();
+        LocationDAO locationDAO = new LocationDAO();
+        ParkingDAO parkingDAO = new ParkingDAO();
+        VehiculeDAO vehiculeDAO = new VehiculeDAO();
+
+        List<Agence> agences = reader.agencesReader();
+        List<Assurance> assurances = reader.assurancesReader();
+        List<Client> clients = reader.clientsReader();
+        List<Employer> employers = reader.employersReader();
+        List<Facture> factures = reader.facturesReader();
+        List<Location> locations = reader.locationsReader();
+        List<Parking> parkings = reader.parkingsReader();
+        List<Vehicule> vehicules = reader.vehiculesReader();
+
+
+        /*
+         POUR INSERER
+        for (Agence agence : agences) {
+            agenceDAO.insert(agence);
+         */
 
     }
 

@@ -14,7 +14,7 @@ import java.util.List;
 
 import org.json.JSONObject;
 
-public class VehiculeDAO {
+public class VehiculeDAO extends BaseDAO{
     /*
     @Override
     public void createIndexes() {

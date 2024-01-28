@@ -23,6 +23,8 @@ public class Parking extends CouchDbDocument {
         this._idAgence = _idAgence;
         this.nombrePlace = nbPlace;
         this.nombrePlaceDispo = nbDispo;
+
+        this.setId(Integer.toString(_id));
     }
 
     public JSONObject generateDocument() {

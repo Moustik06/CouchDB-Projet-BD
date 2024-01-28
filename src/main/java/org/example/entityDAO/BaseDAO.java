@@ -4,6 +4,7 @@ import org.ektorp.*;
 import org.ektorp.support.CouchDbDocument;
 import org.json.JSONObject;
 import java.net.MalformedURLException;
+import java.util.List;
 
 import org.example.Connector;
 
@@ -31,8 +32,14 @@ public abstract class BaseDAO {
     }
 
     public void insert(CouchDbDocument entity) {
-        System.out.println(entity);
         db.create(entity);
-        System.out.println("ntm");
+    }
+
+    public void deleteAll() {
+        ViewQuery query = new ViewQuery().allDocs().includeDocs(true);
+        List<CouchDbDocument> entities = db.queryView(query, CouchDbDocument.class);
+        for (CouchDbDocument entity : entities) {
+            db.delete(entity);
+        }
     }
 }
