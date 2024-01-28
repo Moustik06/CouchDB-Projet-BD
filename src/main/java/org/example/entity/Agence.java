@@ -44,7 +44,6 @@ public class Agence extends CouchDbDocument {
         this.telephone = telephone;
         this.nbEmploye = id_employer.size();
 
-        this.setId(Integer.toString(id));
     }
 
     public Agence(){

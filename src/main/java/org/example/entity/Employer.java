@@ -30,7 +30,7 @@ public class Employer extends CouchDbDocument {
         this.tel = tel;
         this.emploi = emploi;
 
-        this.setId(Integer.toString(_id));
+
     }
 
     public JSONObject generateDocument() {

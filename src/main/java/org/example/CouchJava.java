@@ -87,11 +87,30 @@ public class CouchJava {
         List<Vehicule> vehicules = reader.vehiculesReader();
 
 
-        /*
-         POUR INSERER
         for (Agence agence : agences) {
             agenceDAO.insert(agence);
-         */
+        }
+        for (Assurance assurance : assurances) {
+            assuranceDAO.insert(assurance);
+        }
+        for (Client client : clients) {
+            clientDAO.insert(client);
+        }
+        for (Employer employer : employers) {
+            employerDAO.insert(employer);
+        }
+        for (Facture facture : factures) {
+            factureDAO.insert(facture);
+        }
+        for (Location location : locations) {
+            locationDAO.insert(location);
+        }
+        for (Parking parking : parkings) {
+            parkingDAO.insert(parking);
+        }
+        for (Vehicule vehicule : vehicules) {
+            vehiculeDAO.insert(vehicule);
+        }
 
     }
 

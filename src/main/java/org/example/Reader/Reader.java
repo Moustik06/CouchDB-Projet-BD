@@ -12,6 +12,8 @@ import java.util.List;
 
 public class Reader {
 
+    protected static int id = 1;
+
     public List<Agence> agencesReader() throws IOException {
         String file = "src/main/resources/AgenceData.json";
         String json = new String(Files.readAllBytes(Paths.get(file)));
@@ -65,7 +67,6 @@ public class Reader {
             JSONObject jsonAssurance = jsonArray.getJSONObject(i);
 
             //[{"_id":1,"_id_vehicule":1,"type":"tier","nom_assurance":"Waelchi Inc","prix_assurance":155.7},
-            int id = jsonAssurance.getInt("_id");
             int id_vehicule = jsonAssurance.getInt("_id_vehicule");
             String type = jsonAssurance.getString("type");
             String nom_assurance = jsonAssurance.getString("nom_assurance");
@@ -73,6 +74,7 @@ public class Reader {
 
             // Create Assurance object and add to the list
             Assurance assurance = new Assurance(id,id_vehicule,type,nom_assurance,prix_assurance);
+            id++;
             assuranceList.add(assurance);
 
          }
@@ -94,7 +96,6 @@ public class Reader {
             JSONObject jsonClient = jsonArray.getJSONObject(i);
 
             //{"_id":1,"nom":"De Zuani","prenom":"Josée","adresse":"12th Floor","telephone":"3662217370","email":"edezuani0@flavors.me"},
-            int id = jsonClient.getInt("_id");
             String nom = jsonClient.getString("nom");
             String prenom = jsonClient.getString("prenom");
             String adresse = jsonClient.getString("adresse");
@@ -103,6 +104,7 @@ public class Reader {
 
             // Create Client object and add to the list
             Client client = new Client(id,nom,prenom,adresse,telephone,email);
+            id++;
             clientList.add(client);
 
         }
@@ -124,7 +126,6 @@ public class Reader {
             JSONObject jsonEmployer = jsonArray.getJSONObject(i);
 
             //[{"_id":1,"_id_agence":1,"nom":"Ovenden","prenom":"Måns","adresse":"Apt 1229","telephone":"5492994392","emploi":"chef"},
-            int id = jsonEmployer.getInt("_id");
             int id_agence = jsonEmployer.getInt("_id_agence");
             String nom = jsonEmployer.getString("nom");
             String prenom = jsonEmployer.getString("prenom");
@@ -134,6 +135,7 @@ public class Reader {
 
             // Create Employer object and add to the list
             Employer employer = new Employer(id,id_agence,nom,prenom,adresse,telephone,emploi);
+            id++;
             employerList.add(employer);
 
     }
@@ -154,7 +156,6 @@ public class Reader {
             JSONObject jsonFacture = jsonArray.getJSONObject(i);
 
             //[{"_id":1,"_idLocation":1,"date":"5/24/2023","totalTTC":427.4,"acquitte":true},
-            int id = jsonFacture.getInt("_id");
             int idLocation = jsonFacture.getInt("_idLocation");
             String date = jsonFacture.getString("date");
             double totalTTC = jsonFacture.getDouble("totalTTC");
@@ -162,6 +163,7 @@ public class Reader {
 
             // Create Facture object and add to the list
             Facture facture = new Facture(id,idLocation,date,totalTTC,acquitte);
+            id++;
             factureList.add(facture);
         }
 
@@ -182,7 +184,6 @@ public class Reader {
             JSONObject jsonLocation = jsonArray.getJSONObject(i);
 
             //[{"_id":1,"_id_client":1,"_id_vehicule":1,"_id_agence":1,"id_employer":1,"id_parkingRecup":1,"_id_parkingRendu":1,"date_debut":"7/16/2023","date_fin":"7/9/2023","prix_ttc":225.0},
-            int id = jsonLocation.getInt("_id");
             int id_client = jsonLocation.getInt("_id_client");
             int id_vehicule = jsonLocation.getInt("_id_vehicule");
             int id_agence = jsonLocation.getInt("_id_agence");
@@ -195,6 +196,7 @@ public class Reader {
 
             // Create Location object and add to the list
             Location location = new Location(id,id_client,id_vehicule,id_agence,id_employer,date_debut,date_fin,id_parkingRecup,id_parkingRendu,prix_ttc);
+            id++;
             locationList.add(location);
         }
 
@@ -215,7 +217,6 @@ public class Reader {
             JSONObject jsonParking = jsonArray.getJSONObject(i);
 
             //[{"_id":1,"_idVehicule":1,"_idAgence":1,"nbPlace":1,"nbDispo":1},
-            int id = jsonParking.getInt("_id");
             int idVehicule = jsonParking.getInt("_idVehicule");
             int idAgence = jsonParking.getInt("_idAgence");
             int nbPlace = jsonParking.getInt("nbPlace");
@@ -223,6 +224,7 @@ public class Reader {
 
             // Create Parking object and add to the list
             Parking parking = new Parking(id,idVehicule,idAgence,nbPlace,nbDispo);
+            id++;
             parkingList.add(parking);
         }
 
@@ -243,7 +245,7 @@ public class Reader {
             JSONObject jsonVehicule = jsonArray.getJSONObject(i);
 
             //[{"_id":1,"_id_agence":1,"marque":"Suzuki","modele":"Grand Vitara","prix":174.43,"caution":459.19,"plaque_imat":"WAUJFAFH7BN867243"},
-            int id = jsonVehicule.getInt("_id");
+
             int id_agence = jsonVehicule.getInt("_id_agence");
             String marque = jsonVehicule.getString("marque");
             String modele = jsonVehicule.getString("modele");
@@ -253,6 +255,7 @@ public class Reader {
 
             // Create Vehicule object and add to the list
             Vehicule vehicule = new Vehicule(id,id_agence,marque,modele,prix,caution,plaque_imat);
+            id++;
             vehiculeList.add(vehicule);
 
         }

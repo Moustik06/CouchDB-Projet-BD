@@ -23,7 +23,6 @@ public class Assurance extends CouchDbDocument {
         this.nom_assurance = nom_assurance;
         this.prix_assurance = prix_assurance;
 
-        this.setId(Integer.toString(_id));
     }
 
     public JSONObject generateDocument() {

@@ -31,7 +31,7 @@ public class Vehicule extends CouchDbDocument {
         this.caution = caution;
         this.plaque_imat = plaque_imat;
 
-        this.setId(Integer.toString(_id));
+
     }
 
     public JSONObject generateDocument() {
