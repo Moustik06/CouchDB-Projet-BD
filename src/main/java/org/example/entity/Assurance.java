@@ -3,6 +3,9 @@ package org.example.entity;
 import com.fasterxml.jackson.annotation.*;
 import org.ektorp.support.CouchDbDocument;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 public class Assurance extends CouchDbDocument {
 
     @JsonProperty("_id")
@@ -29,13 +32,39 @@ public class Assurance extends CouchDbDocument {
         this.setId(String.valueOf(_id));
     }
 
-    public JSONObject generateDocument() {
-        JSONObject doc = new JSONObject();
-        doc.put("_id", this._id);
-        doc.put("id_vehicule", this._id_vehicule);
-        doc.put("type", this.type);
-        doc.put("nom_assurance", this.nom_assurance);
-        doc.put("prix_assurance", this.prix_assurance);
-        return doc;
+    public Assurance(){
+        this._type = "assurance";
+        this._id = 0;
+        this._id_vehicule = 0;
+        this.type = "";
+        this.nom_assurance = "";
+        this.prix_assurance = 0;
+    }
+
+    public ArrayList<String> getData() {
+        ArrayList<String> data = new ArrayList<String>();
+        data.add(String.valueOf(_id));
+        data.add(String.valueOf(_id_vehicule));
+        data.add(type);
+        data.add(nom_assurance);
+        data.add(String.valueOf(prix_assurance));
+        return data;
+    }
+
+    public <U> U getNom_assurance() {
+        return (U) nom_assurance;
+    }
+
+    // getPrix_assurance cest un double
+    public double getPrix_assurance() {
+        return  prix_assurance;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public int get_id() {
+        return _id;
     }
 }

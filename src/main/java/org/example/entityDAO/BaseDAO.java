@@ -35,11 +35,17 @@ public abstract class BaseDAO {
         db.create(entity);
     }
 
-    public void deleteAll() {
-        ViewQuery query = new ViewQuery().allDocs().includeDocs(true);
-        List<CouchDbDocument> entities = db.queryView(query, CouchDbDocument.class);
-        for (CouchDbDocument entity : entities) {
-            db.delete(entity);
-        }
+    //faire CRUD
+    public void update(CouchDbDocument entity) {
+        db.update(entity);
     }
+
+    public void delete(CouchDbDocument entity) {
+        db.delete(entity);
+    }
+
+    public CouchDbDocument find(Class<? extends CouchDbDocument> type, String id) {
+        return db.get(type, id);
+    }
+
 }
