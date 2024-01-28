@@ -70,7 +70,7 @@ public class CouchJava {
         ParkingDAO parkingDAO = new ParkingDAO();
         VehiculeDAO vehiculeDAO = new VehiculeDAO();
 
-        /*
+        /* ici
         List<Agence> agences = reader.agencesReader();
         List<Assurance> assurances = reader.assurancesReader();
         List<Client> clients = reader.clientsReader();
