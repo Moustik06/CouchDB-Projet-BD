@@ -19,6 +19,8 @@ public class Client extends CouchDbDocument {
     @JsonProperty("email")
     private final String email;
 
+    @JsonProperty("doc_type")
+    private final String _type;
     public Client(int id, String nom, String prenom, String adresse, String telephone, String email) {
         this._id = id;
         this.nom = nom;
@@ -26,6 +28,7 @@ public class Client extends CouchDbDocument {
         this.adresse = adresse;
         this.telephone = telephone;
         this.email = email;
+        this._type = "client";
 
         this.setId(String.valueOf(id));
     }

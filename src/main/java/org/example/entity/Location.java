@@ -27,6 +27,8 @@ public class Location extends CouchDbDocument {
     @JsonProperty("prix_ttc")
     private final double prix_ttc;
 
+    @JsonProperty("doc_type")
+    private final String _type;
     public Location(int _id, int _id_client, int _id_vehicule, int _id_agence, int _id_employe, String date_debut,
             String date_fin, int _id_parkingRecup, int _id_parkingRendu, double prix_ttc) {
         this._id = _id;
@@ -39,6 +41,7 @@ public class Location extends CouchDbDocument {
         this._id_parkingRecup = _id_parkingRecup;
         this._id_parkingRendu = _id_parkingRendu;
         this.prix_ttc = prix_ttc;
+        this._type = "location";
         this.setId(String.valueOf(_id));
 
     }

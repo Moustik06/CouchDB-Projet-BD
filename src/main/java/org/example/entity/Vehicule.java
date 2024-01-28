@@ -21,6 +21,9 @@ public class Vehicule extends CouchDbDocument {
     @JsonProperty("plaque_imat")
     private final String plaque_imat;
 
+    @JsonProperty("doc_type")
+    private final String _type;
+
     public Vehicule(int _id, int _id_agence, String marque, String modele, double prix, double caution,
             String plaque_imat) {
         this._id = _id;
@@ -30,6 +33,7 @@ public class Vehicule extends CouchDbDocument {
         this.prix = prix;
         this.caution = caution;
         this.plaque_imat = plaque_imat;
+        this._type = "vehicule";
         this.setId(String.valueOf(_id));
 
     }

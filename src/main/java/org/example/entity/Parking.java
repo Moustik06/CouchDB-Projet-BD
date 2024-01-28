@@ -17,12 +17,15 @@ public class Parking extends CouchDbDocument {
     @JsonProperty("nbDispo")
     private final int nombrePlaceDispo;
 
+    @JsonProperty("doc_type")
+    private final String _type;
     public Parking(int _id, int _idVehicule, int _idAgence, int nbPlace, int nbDispo) {
         this._id = _id;
         this._idVehicule = _idVehicule;
         this._idAgence = _idAgence;
         this.nombrePlace = nbPlace;
         this.nombrePlaceDispo = nbDispo;
+        this._type = "parking";
 
         this.setId(String.valueOf(_id));
     }

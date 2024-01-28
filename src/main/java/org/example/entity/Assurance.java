@@ -16,12 +16,16 @@ public class Assurance extends CouchDbDocument {
     @JsonProperty("prix_assurance")
     private final double prix_assurance;
 
+    @JsonProperty("doc_type")
+    private final String _type;
     public Assurance(int _id, int _id_vehicule, String type, String nom_assurance, double prix_assurance) {
         this._id = _id;
         this._id_vehicule = _id_vehicule;
         this.type = type;
         this.nom_assurance = nom_assurance;
         this.prix_assurance = prix_assurance;
+
+        this._type = "assurance";
         this.setId(String.valueOf(_id));
     }
 

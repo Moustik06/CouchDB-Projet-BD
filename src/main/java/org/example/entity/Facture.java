@@ -16,6 +16,8 @@ public class Facture extends CouchDbDocument {
     private final double totalTTC;
     @JsonProperty("acquitte")
     private final boolean acquitte;
+    @JsonProperty("doc_type")
+    private final String _type;
 
     public Facture(int _id, int _idLocation, String date, double totalTTC, boolean acquitte) {
         this._id = _id;
@@ -23,7 +25,7 @@ public class Facture extends CouchDbDocument {
         this.date = date;
         this.totalTTC = totalTTC;
         this.acquitte = acquitte;
-
+        this._type = "facture";
         this.setId(String.valueOf(_id));
     }
 
