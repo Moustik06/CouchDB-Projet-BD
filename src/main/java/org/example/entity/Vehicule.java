@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.*;
 import org.ektorp.support.CouchDbDocument;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class Vehicule extends CouchDbDocument {
 
     @JsonProperty("_id")
@@ -38,15 +40,43 @@ public class Vehicule extends CouchDbDocument {
 
     }
 
-    public JSONObject generateDocument() {
-        JSONObject doc = new JSONObject();
-        doc.put("_id", this._id);
-        doc.put("id_agence", this._id_agence);
-        doc.put("marque", this.marque);
-        doc.put("modele", this.modele);
-        doc.put("prix", this.prix);
-        doc.put("caution", this.caution);
-        doc.put("plaque_imat", this.plaque_imat);
-        return doc;
+    public Vehicule(){
+        this._id = 0;
+        this._id_agence = 0;
+        this.marque = "";
+        this.modele = "";
+        this.prix = 0;
+        this.caution = 0;
+        this.plaque_imat = "";
+        this._type = "vehicule";
+
+    }
+
+    public ArrayList<String> getData(){
+        ArrayList<String> data = new ArrayList<String>();
+        data.add(String.valueOf(this._id));
+        data.add(String.valueOf(this._id_agence));
+        data.add(this.marque);
+        data.add(this.modele);
+        data.add(String.valueOf(this.prix));
+        data.add(String.valueOf(this.caution));
+        data.add(this.plaque_imat);
+        return data;
+    }
+
+    public String getModele() {
+        return modele;
+    }
+
+    public String getMarque() {
+        return marque;
+    }
+
+    public int getId_agence() {
+        return _id_agence;
+    }
+
+    public String getPlaque_imat() {
+        return plaque_imat;
     }
 }

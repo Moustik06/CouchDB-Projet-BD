@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.*;
 import org.ektorp.support.CouchDbDocument;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class Employer extends CouchDbDocument {
 
     @JsonProperty("_id")
@@ -35,15 +37,42 @@ public class Employer extends CouchDbDocument {
         this.setId(String.valueOf(_id));
     }
 
-    public JSONObject generateDocument() {
-        JSONObject doc = new JSONObject();
-        doc.put("_id", this._id);
-        doc.put("id_agence", this._id_agence);
-        doc.put("nom", this.nom);
-        doc.put("prenom", this.prenom);
-        doc.put("adresse", this.adresse);
-        doc.put("tel", this.tel);
-        doc.put("emploi", this.emploi);
-        return doc;
+    public Employer(){
+        this._id = 0;
+        this._id_agence = 0;
+        this.nom = "";
+        this.prenom = "";
+        this.adresse = "";
+        this.tel = "";
+        this.emploi = "";
+        this._type = "employer";
+    }
+
+    public ArrayList<String> getData(){
+        ArrayList<String> data = new ArrayList<>();
+        data.add(String.valueOf(this._id));
+        data.add(String.valueOf(this._id_agence));
+        data.add(this.nom);
+        data.add(this.prenom);
+        data.add(this.adresse);
+        data.add(this.tel);
+        data.add(this.emploi);
+        return data;
+    }
+
+    public String getJob() {
+        return this.emploi;
+    }
+
+    public int getIdAgence() {
+        return this._id_agence;
+    }
+
+    public String getNom() {
+        return this.nom;
+    }
+
+    public String getPrenom() {
+        return this.prenom;
     }
 }

@@ -2,7 +2,8 @@ package org.example.entity;
 
 import com.fasterxml.jackson.annotation.*;
 import org.ektorp.support.CouchDbDocument;
-import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class Location extends CouchDbDocument {
 
@@ -46,18 +47,57 @@ public class Location extends CouchDbDocument {
 
     }
 
-    public JSONObject generateDocument() {
-        JSONObject doc = new JSONObject();
-        doc.put("_id", this._id);
-        doc.put("id_client", this._id_client);
-        doc.put("id_vehicule", this._id_vehicule);
-        doc.put("id_agence", this._id_agence);
-        doc.put("id_employe", this._id_employe);
-        doc.put("date_debut", this.date_debut);
-        doc.put("date_fin", this.date_fin);
-        doc.put("id_parkingRecup", this._id_parkingRecup);
-        doc.put("id_parkingRendu", this._id_parkingRendu);
-        doc.put("prix_ttc", this.prix_ttc);
-        return doc;
+    public Location(){
+        this._id = 0;
+        this._id_client = 0;
+        this._id_vehicule = 0;
+        this._id_agence = 0;
+        this._id_employe = 0;
+        this.date_debut = "";
+        this.date_fin = "";
+        this._id_parkingRecup = 0;
+        this._id_parkingRendu = 0;
+        this.prix_ttc = 0;
+        this._type = "location";
+
+    }
+
+    public ArrayList<String> getData(){
+        ArrayList<String> data = new ArrayList<String>();
+        data.add(String.valueOf(this._id));
+        data.add(String.valueOf(this._id_client));
+        data.add(String.valueOf(this._id_vehicule));
+        data.add(String.valueOf(this._id_agence));
+        data.add(String.valueOf(this._id_employe));
+        data.add(this.date_debut);
+        data.add(this.date_fin);
+        data.add(String.valueOf(this._id_parkingRecup));
+        data.add(String.valueOf(this._id_parkingRendu));
+        data.add(String.valueOf(this.prix_ttc));
+        return data;
+    }
+
+    public int getIdClient() {
+        return _id_client;
+    }
+
+    public int getIdVehicule() {
+        return _id_vehicule;
+    }
+
+    public int getIdAgence() {
+        return _id_agence;
+    }
+
+    public int getIdEmploye() {
+        return _id_employe;
+    }
+
+    public double getPrixTTC() {
+        return prix_ttc;
+    }
+
+    public String getDateDebut() {
+        return date_debut;
     }
 }

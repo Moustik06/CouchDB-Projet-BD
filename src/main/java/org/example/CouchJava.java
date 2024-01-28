@@ -77,6 +77,7 @@ public class CouchJava {
         ParkingDAO parkingDAO = new ParkingDAO();
         VehiculeDAO vehiculeDAO = new VehiculeDAO();
 
+        /*
         List<Agence> agences = reader.agencesReader();
         List<Assurance> assurances = reader.assurancesReader();
         List<Client> clients = reader.clientsReader();
@@ -110,6 +111,11 @@ public class CouchJava {
         }
         for (Vehicule vehicule : vehicules) {
             vehiculeDAO.insert(vehicule);
+        }*/
+
+        List<Employer> employers = employerDAO.getEmployersSortedByJob();
+        for (Employer employer : employers) {
+            System.out.println(employer.getData());
         }
 
     }

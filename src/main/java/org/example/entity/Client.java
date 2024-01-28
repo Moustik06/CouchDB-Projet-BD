@@ -2,7 +2,8 @@ package org.example.entity;
 
 import com.fasterxml.jackson.annotation.*;
 import org.ektorp.support.CouchDbDocument;
-import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class Client extends CouchDbDocument {
 
@@ -33,14 +34,41 @@ public class Client extends CouchDbDocument {
         this.setId(String.valueOf(id));
     }
 
-    public JSONObject generateDocument() {
-        JSONObject doc = new JSONObject();
-        doc.put("_id", this._id);
-        doc.put("nom", this.nom);
-        doc.put("prenom", this.prenom);
-        doc.put("adresse", this.adresse);
-        doc.put("telephone", this.telephone);
-        doc.put("email", this.email);
-        return doc;
+    public Client(){
+        this._id = 0;
+        this.nom = "";
+        this.prenom = "";
+        this.adresse = "";
+        this.telephone = "";
+        this.email = "";
+        this._type = "client";
+    }
+
+    public ArrayList<String> getData(){
+        ArrayList<String> data = new ArrayList<>();
+        data.add(String.valueOf(this._id));
+        data.add(this.nom);
+        data.add(this.prenom);
+        data.add(this.adresse);
+        data.add(this.telephone);
+        data.add(this.email);
+        return data;
+    }
+
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public String getAdresse() {
+        return adresse;
     }
 }

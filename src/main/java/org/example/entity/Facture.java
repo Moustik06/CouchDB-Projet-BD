@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.*;
 import org.ektorp.support.CouchDbDocument;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class Facture extends CouchDbDocument {
 
     @JsonProperty("_id")
@@ -29,13 +31,41 @@ public class Facture extends CouchDbDocument {
         this.setId(String.valueOf(_id));
     }
 
-    public JSONObject generateDocument() {
-        JSONObject doc = new JSONObject();
-        doc.put("_id", this._id);
-        doc.put("idLocation", this._idLocation);
-        doc.put("date", this.date);
-        doc.put("totalTTC", this.totalTTC);
-        doc.put("acquitte", this.acquitte);
-        return doc;
+    public Facture(){
+        this._id = 0;
+        this._idLocation = 0;
+        this.date = "";
+        this.totalTTC = 0;
+        this.acquitte = false;
+        this._type = "facture";
+
+    }
+
+
+    public ArrayList<String> getData(){
+        ArrayList<String> data = new ArrayList<>();
+        data.add(String.valueOf(this._id));
+        data.add(String.valueOf(this._idLocation));
+        data.add(this.date);
+        data.add(String.valueOf(this.totalTTC));
+        data.add(String.valueOf(this.acquitte));
+        return data;
+    }
+
+    public int getIdLocation() {
+        return _idLocation;
+    }
+
+    public double getPrixTTC() {
+        return totalTTC;
+    }
+
+
+    public String getDate() {
+        return date;
+    }
+
+    public int getIdAgence() {
+        return _idLocation;
     }
 }

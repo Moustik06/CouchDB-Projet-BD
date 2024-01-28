@@ -13,7 +13,7 @@ import javax.swing.text.html.parser.Entity;
 public abstract class BaseDAO {
 
 
-    private static final CouchDbConnector db;
+    protected static final CouchDbConnector db;
 
     static {
         try {

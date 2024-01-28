@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.*;
 import org.ektorp.support.CouchDbDocument;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class Parking extends CouchDbDocument {
 
     @JsonProperty("_id")
@@ -30,13 +32,35 @@ public class Parking extends CouchDbDocument {
         this.setId(String.valueOf(_id));
     }
 
-    public JSONObject generateDocument() {
-        JSONObject doc = new JSONObject();
-        doc.put("_id", this._id);
-        doc.put("idVehicule", this._idVehicule);
-        doc.put("idAgence", this._idAgence);
-        doc.put("nbPlace", this.nombrePlace);
-        doc.put("nbDispo", this.nombrePlaceDispo);
-        return doc;
+    public Parking(){
+        this._id = 0;
+        this._idVehicule = 0;
+        this._idAgence = 0;
+        this.nombrePlace = 0;
+        this.nombrePlaceDispo = 0;
+        this._type = "parking";
+
+    }
+
+    public int getIdAgence() {
+        return _idAgence;
+    }
+
+    public int getIdVehicule() {
+        return _idVehicule;
+    }
+
+    public int getNombrePlaceDispo() {
+        return nombrePlaceDispo;
+    }
+
+    public ArrayList<String> getData(){
+        ArrayList<String> data = new ArrayList<>();
+        data.add(String.valueOf(_id));
+        data.add(String.valueOf(_idVehicule));
+        data.add(String.valueOf(_idAgence));
+        data.add(String.valueOf(nombrePlace));
+        data.add(String.valueOf(nombrePlaceDispo));
+        return data;
     }
 }
