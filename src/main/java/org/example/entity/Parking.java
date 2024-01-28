@@ -24,7 +24,7 @@ public class Parking extends CouchDbDocument {
         this.nombrePlace = nbPlace;
         this.nombrePlaceDispo = nbDispo;
 
-
+        this.setId(String.valueOf(_id));
     }
 
     public JSONObject generateDocument() {

@@ -28,7 +28,7 @@ public class Reader {
             JSONObject jsonAgence = jsonArray.getJSONObject(i);
 
             //{"_id":1,"_id_employer":"[1,2,5,7,4,9]","_id_parking":1,"nom":"Marie-noël","adresse":"Apt 919","telephone":"9524496346"}
-            int id = jsonAgence.getInt("_id");
+
             String id_employer = jsonAgence.getString("_id_employer");
             int id_parking = jsonAgence.getInt("_id_parking");
             String nom = jsonAgence.getString("nom");
@@ -46,6 +46,7 @@ public class Reader {
 
             // Create Agence object and add to the list
             Agence agence = new Agence(id, id_employerList, id_parking, nom, adresse, telephone);
+            id++;
             agenceList.add(agence);
         }
 

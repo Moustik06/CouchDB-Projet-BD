@@ -30,7 +30,7 @@ public class Vehicule extends CouchDbDocument {
         this.prix = prix;
         this.caution = caution;
         this.plaque_imat = plaque_imat;
-
+        this.setId(String.valueOf(_id));
 
     }
 
