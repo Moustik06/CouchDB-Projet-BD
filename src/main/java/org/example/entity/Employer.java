@@ -10,7 +10,7 @@ public class Employer extends CouchDbDocument {
 
     @JsonProperty("_id")
     private final int _id;
-    @JsonProperty("id_agence")
+    @JsonProperty("idAgence")
     private final int _id_agence;
     @JsonProperty("nom")
     private final String nom;
@@ -60,9 +60,10 @@ public class Employer extends CouchDbDocument {
         return data;
     }
 
-    public String getJob() {
+    public String getEmploi() {
         return this.emploi;
     }
+
 
     public int getIdAgence() {
         return this._id_agence;

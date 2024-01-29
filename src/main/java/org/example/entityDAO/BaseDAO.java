@@ -12,7 +12,6 @@ import javax.swing.text.html.parser.Entity;
 
 public abstract class BaseDAO {
 
-
     protected static final CouchDbConnector db;
 
     static {
@@ -35,7 +34,7 @@ public abstract class BaseDAO {
         db.create(entity);
     }
 
-    //faire CRUD
+
     public void update(CouchDbDocument entity) {
         db.update(entity);
     }

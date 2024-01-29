@@ -9,23 +9,23 @@ public class Location extends CouchDbDocument {
 
     @JsonProperty("_id")
     private final int _id;
-    @JsonProperty("id_client")
+    @JsonProperty("idClient")
     private final int _id_client;
-    @JsonProperty("id_vehicule")
+    @JsonProperty("idVehicule")
     private final int _id_vehicule;
-    @JsonProperty("id_agence")
+    @JsonProperty("idAgence")
     private final int _id_agence;
-    @JsonProperty("id_employe")
+    @JsonProperty("idEmploye")
     private final int _id_employe;
-    @JsonProperty("date_debut")
+    @JsonProperty("dateDebut")
     private final String date_debut;
-    @JsonProperty("date_fin")
+    @JsonProperty("dateFin")
     private final String date_fin;
     @JsonProperty("id_parkingRecup")
     private final int _id_parkingRecup;
     @JsonProperty("id_parkingRendu")
     private final int _id_parkingRendu;
-    @JsonProperty("prix_ttc")
+    @JsonProperty("prixTTC")
     private final double prix_ttc;
 
     @JsonProperty("doc_type")

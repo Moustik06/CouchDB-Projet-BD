@@ -3,7 +3,6 @@ package org.example.entityDAO;
 import org.ektorp.ViewQuery;
 import org.ektorp.ViewResult;
 import org.example.entity.Facture;
-import org.example.entity.Location;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -72,7 +71,7 @@ public class FactureDAO extends BaseDAO{
             factures.add(facture);
         }
 
-        factures.sort(Comparator.comparingDouble(Facture::getPrixTTC).reversed());
+        factures.sort(Comparator.comparingDouble(Facture::getTotalTTC).reversed());
 
         return factures;
     }

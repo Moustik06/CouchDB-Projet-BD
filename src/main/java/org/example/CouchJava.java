@@ -70,7 +70,7 @@ public class CouchJava {
         ParkingDAO parkingDAO = new ParkingDAO();
         VehiculeDAO vehiculeDAO = new VehiculeDAO();
 
-        /*
+
         List<Agence> agences = reader.agencesReader();
         List<Assurance> assurances = reader.assurancesReader();
         List<Client> clients = reader.clientsReader();
@@ -81,8 +81,8 @@ public class CouchJava {
         List<Vehicule> vehicules = reader.vehiculesReader();
 
         //creer des clients
-        Client client1 = new Client(6,"Jean","Dupont","1 rue du soleil","0123456789","jean.dupont@gmailcom");
-        Client client2 = new Client(7,"Cou","Beh","2 rue du cul","0123456789","cou.beh@gmailcom");
+        //Client client1 = new Client(6,"Jean","Dupont","1 rue du soleil","0123456789","jean.dupont@gmailcom");
+        //Client client2 = new Client(7,"Cou","Beh","2 rue du cul","0123456789","cou.beh@gmailcom");
 
         //inserer clients
         //clientDAO.insert(client1);
@@ -90,8 +90,8 @@ public class CouchJava {
 
 
         // Créer des documents Location associés à l'Agence 1
-        Location location1 = new Location(8,1,1,1,1,"7/16/2023","7/9/2023",1,1,225.0);
-        Location location2 = new Location(9,1,2,1,1,"7/18/2023","7/11/2023",1,1,223.0);
+        //Location location1 = new Location(8,1,1,1,1,"7/16/2023","7/9/2023",1,1,225.0);
+        //Location location2 = new Location(9,1,2,1,1,"7/18/2023","7/11/2023",1,1,223.0);
 
         // inserer les locations
         //locationDAO.insert(location1);
@@ -117,7 +117,7 @@ public class CouchJava {
         }
         for (Employer employer : employers) {
             employerDAO.insert(employer);
-        }
+        }/*
         for (Facture facture : factures) {
             factureDAO.insert(facture);
         }
@@ -131,12 +131,6 @@ public class CouchJava {
             vehiculeDAO.insert(vehicule);
         }*/
 
-        /*
-        List<Employer> employers = employerDAO.getEmployersSortedByJob();
-        for (Employer employer : employers) {
-            System.out.println(employer.getData());
-        }
-        */
 
         /*
         //getAllAgence
@@ -181,6 +175,7 @@ public class CouchJava {
             System.out.println(assurance.getData());
         }
 
+
         //getAssuPrixCroissant
         List<Assurance> _assurances = assuranceDAO.getAssuPrixCroissant();
         for (Assurance assurance : _assurances) {
@@ -194,12 +189,12 @@ public class CouchJava {
         }
 
         //getAssuById
-        //teste avec id = 1
-        Assurance _assu = assuranceDAO.getAssuById(1);
+        //teste avec id = 752
+        Assurance _assu = assuranceDAO.getAssuById(752);
         System.out.println(_assu.getData());
 
 
-
+        /*
        //getAllVehicule
         List<Vehicule> _vehicules = vehiculeDAO.getAllVehicule();
         for (Vehicule vehicule : _vehicules) {
@@ -218,7 +213,7 @@ public class CouchJava {
         for (Vehicule vehicule : _vehicules) {
             System.out.println(vehicule.getData());
         }
-
+        /*
         //getVehiculeByAgence
         List<Vehicule> _vehicules = vehiculeDAO.getVehiculeByAgence(1);
         for (Vehicule vehicule : _vehicules) {
@@ -242,7 +237,7 @@ public class CouchJava {
         }
 
         //getParkingByVehicule
-        List<Parking> _parkings = parkingDAO.getParkingByVehicule(1);
+        List<Parking> _parkings = parkingDAO.getParkingByVehicule(8);
         for (Parking parking : _parkings) {
             System.out.println(parking.getData());
         }
@@ -254,7 +249,7 @@ public class CouchJava {
         }
 
         //getParkingsWithAvailablePlacesByAgence
-        List<Parking> _parkings = parkingDAO.getParkingsWithAvailablePlacesByAgence(1);
+        List<Parking> _parkings = parkingDAO.getParkingsWithAvailablePlacesByAgence(100);
         for (Parking parking : _parkings) {
             System.out.println(parking.getData());
         }
@@ -265,12 +260,13 @@ public class CouchJava {
             System.out.println(location.getData());
         }
 
+
         //getLocationsByClient
         List<Location> _locations = locationDAO.getLocationsByClient(1);
         for (Location location : _locations) {
             System.out.println(location.getData());
         }
-
+        /*
         //getLocationsByVehicule
         List<Location> _locations = locationDAO.getLocationsByVehicule(1);
         for (Location location : _locations) {
@@ -294,7 +290,7 @@ public class CouchJava {
         for (Location location : _locations) {
             System.out.println(location.getData());
         }
-
+        /*
         //getLocationSortedByDate
         List<Location> _locations = locationDAO.getLocationSortedByDate();
         for (Location location : _locations) {
@@ -306,7 +302,7 @@ public class CouchJava {
         for (Facture facture : _factures) {
             System.out.println(facture.getData());
         }
-
+        /*
         //getFactureByLocation
         List<Facture> _factures = factureDAO.getFactureByLocation(1);
         for (Facture facture : _factures) {
@@ -324,6 +320,8 @@ public class CouchJava {
         for (Facture facture : _factures) {
             System.out.println(facture.getData());
         }
+        /
+
 
         //getFacturesByDate
         List<Facture> _factures = factureDAO.getFacturesByDate("7/16/2023");
@@ -342,19 +340,21 @@ public class CouchJava {
         for (Employer employer : _employers) {
             System.out.println(employer.getData());
         }
-
+        /*
         //getEmployerById
         List<Employer> _employers = employerDAO.getEmployerById(1);
         for (Employer employer : _employers) {
             System.out.println(employer.getData());
         }
 
+
+         */
         //getEmployerByJob
         List<Employer> _employers = employerDAO.getEmployerByJob("chef");
         for (Employer employer : _employers) {
             System.out.println(employer.getData());
         }
-
+        /*
         //getEmployersSortedByJob
         List<Employer> _employers = employerDAO.getEmployersSortedByJob();
         for (Employer employer : _employers) {
@@ -391,12 +391,13 @@ public class CouchJava {
             System.out.println(employer.getData());
         }
 
+
         //getAllClient
         List<Client> _clients = clientDAO.getAllClient();
         for (Client client : _clients) {
             System.out.println(client.getData());
         }
-
+        /*
         //getClientById
         List<Client> _clients = clientDAO.getClientById(1);
         for (Client client : _clients) {

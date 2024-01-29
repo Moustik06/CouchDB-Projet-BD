@@ -44,7 +44,7 @@ public class EmployerDAO extends BaseDAO{
         return employers;
 
     }
-    public List<Employer> getEmployerByJob(String job) {
+    public List<Employer> getEmployerByJob(String emploi) {
         ViewQuery query = new ViewQuery().designDocId("_design/Employer").viewName("_employer");
 
         ViewResult result = db.queryView(query);
@@ -53,7 +53,7 @@ public class EmployerDAO extends BaseDAO{
 
         for (ViewResult.Row row : result.getRows()) {
             Employer employer = db.get(Employer.class, row.getId());
-            if (employer.getJob().equals(job)) {
+            if (employer.getEmploi().equals(emploi)) {
                 employers.add(employer);
             }
         }
@@ -92,7 +92,7 @@ public class EmployerDAO extends BaseDAO{
             employers.add(employer);
         }
 
-        employers.sort(Comparator.comparing(Employer::getJob));
+        employers.sort(Comparator.comparing(Employer::getEmploi));
 
         return employers;
 
