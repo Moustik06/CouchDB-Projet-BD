@@ -1,0 +1,17 @@
+{
+    "id": "_design/Vehicule",
+    "key": "_design/Vehicule",
+    "value": {
+        "rev": "1-eea346da37bf003fc3cf8a445cd3a8a0"
+    },
+    "doc": {
+        "_id": "_design/Vehicule",
+        "_rev": "1-eea346da37bf003fc3cf8a445cd3a8a0",
+        "views": {
+            "_vehicule": {
+                "map": "function (doc) {\r\n  if (doc.doc_type && doc.doc_type === \"vehicule\") {\r\n    emit(doc._id, 1);\r\n  }\r\n}"
+            }
+        },
+        "language": "javascript"
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "id": "_design/Client",
+    "key": "_design/Client",
+    "value": {
+        "rev": "1-1059dbfde38699af2465c7d533210e76"
+    },
+    "doc": {
+        "_id": "_design/Client",
+        "_rev": "1-1059dbfde38699af2465c7d533210e76",
+        "views": {
+            "_client": {
+                "map": "function (doc) {\r\n  if (doc.doc_type && doc.doc_type === \"client\") {\r\n    emit(doc._id, 1);\r\n  }\r\n}"
+            }
+        },
+        "language": "javascript"
+    }
+}

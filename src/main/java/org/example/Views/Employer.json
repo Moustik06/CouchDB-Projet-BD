@@ -1,0 +1,17 @@
+{
+    "id": "_design/Employer",
+    "key": "_design/Employer",
+    "value": {
+        "rev": "1-2c94cb603498fc7e21c59290e7403e54"
+    },
+    "doc": {
+        "_id": "_design/Employer",
+        "_rev": "1-2c94cb603498fc7e21c59290e7403e54",
+        "views": {
+            "_employer": {
+                "map": "function (doc) {\r\n  if (doc.doc_type && doc.doc_type === \"employer\") {\r\n    emit(doc._id, 1);\r\n  }\r\n}"
+            }
+        },
+        "language": "javascript"
+    }
+}
