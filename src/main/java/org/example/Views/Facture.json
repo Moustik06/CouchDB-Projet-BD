@@ -1,0 +1,17 @@
+{
+    "id": "_design/Facture",
+    "key": "_design/Facture",
+    "value": {
+        "rev": "1-7d1ed31c01317d848b2dce064705f6b9"
+    },
+    "doc": {
+        "_id": "_design/Facture",
+        "_rev": "1-7d1ed31c01317d848b2dce064705f6b9",
+        "views": {
+            "_facture": {
+                "map": "function (doc) {\r\n  if (doc.doc_type && doc.doc_type === \"facture\") {\r\n    emit(doc._id, 1);\r\n  }\r\n}"
+            }
+        },
+        "language": "javascript"
+    }
+}

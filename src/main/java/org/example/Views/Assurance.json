@@ -1,0 +1,17 @@
+{
+    "id": "_design/Assurance",
+    "key": "_design/Assurance",
+    "value": {
+        "rev": "1-9744daf400e87d122e750b466370282e"
+    },
+    "doc": {
+        "_id": "_design/Assurance",
+        "_rev": "1-9744daf400e87d122e750b466370282e",
+        "views": {
+            "_assurance": {
+                "map": "function (doc) {\r\n  if (doc.doc_type && doc.doc_type === \"assurance\") {\r\n    emit(doc._id, 1);\r\n  }\r\n}"
+            }
+        },
+        "language": "javascript"
+    }
+}

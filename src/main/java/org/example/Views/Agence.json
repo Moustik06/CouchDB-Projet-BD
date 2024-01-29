@@ -1,0 +1,17 @@
+{
+    "id": "_design/Agence",
+    "key": "_design/Agence",
+    "value": {
+        "rev": "1-21ef0e7a9e2b560b58f6eefa3e5744fc"
+    },
+    "doc": {
+        "_id": "_design/Agence",
+        "_rev": "1-21ef0e7a9e2b560b58f6eefa3e5744fc",
+        "views": {
+            "_agence": {
+                "map": "function (doc) {\r\n  if (doc.doc_type && doc.doc_type === \"agence\") {\r\n    emit(doc._id, 1);\r\n  }\r\n}"
+            }
+        },
+        "language": "javascript"
+    }
+}
