@@ -40,7 +40,7 @@ public class Vehicule extends CouchDbDocument {
 
     }
 
-    public Vehicule(){
+    public Vehicule() {
         this._id = 0;
         this._id_agence = 0;
         this.marque = "";
@@ -52,7 +52,7 @@ public class Vehicule extends CouchDbDocument {
 
     }
 
-    public ArrayList<String> getData(){
+    public ArrayList<String> getData() {
         ArrayList<String> data = new ArrayList<String>();
         data.add(String.valueOf(this._id));
         data.add(String.valueOf(this._id_agence));
@@ -74,6 +74,10 @@ public class Vehicule extends CouchDbDocument {
 
     public int getId_agence() {
         return _id_agence;
+    }
+
+    public double getPrix() {
+        return prix;
     }
 
     public String getPlaque_imat() {
