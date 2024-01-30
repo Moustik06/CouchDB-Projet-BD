@@ -21,6 +21,7 @@ public class Parking extends CouchDbDocument {
 
     @JsonProperty("doc_type")
     private final String _type;
+
     public Parking(int _id, int _idVehicule, int _idAgence, int nbPlace, int nbDispo) {
         this._id = _id;
         this._idVehicule = _idVehicule;
@@ -32,14 +33,23 @@ public class Parking extends CouchDbDocument {
         this.setId(String.valueOf(_id));
     }
 
-    public Parking(){
+    public Parking() {
         this._id = 0;
         this._idVehicule = 0;
         this._idAgence = 0;
         this.nombrePlace = 0;
         this.nombrePlaceDispo = 0;
         this._type = "parking";
+    }
 
+    public ArrayList<String> getData() {
+        ArrayList<String> data = new ArrayList<>();
+        data.add(String.valueOf(_id));
+        data.add(String.valueOf(_idVehicule));
+        data.add(String.valueOf(_idAgence));
+        data.add(String.valueOf(nombrePlace));
+        data.add(String.valueOf(nombrePlaceDispo));
+        return data;
     }
 
     public int getIdAgence() {
@@ -54,13 +64,11 @@ public class Parking extends CouchDbDocument {
         return nombrePlaceDispo;
     }
 
-    public ArrayList<String> getData(){
-        ArrayList<String> data = new ArrayList<>();
-        data.add(String.valueOf(_id));
-        data.add(String.valueOf(_idVehicule));
-        data.add(String.valueOf(_idAgence));
-        data.add(String.valueOf(nombrePlace));
-        data.add(String.valueOf(nombrePlaceDispo));
-        return data;
+    public int getNombrePlace() {
+        return nombrePlace;
+    }
+
+    public int get_id() {
+        return _id;
     }
 }

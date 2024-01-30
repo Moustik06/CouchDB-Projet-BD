@@ -1,4 +1,5 @@
 package org.example;
+
 import org.ektorp.CouchDbConnector;
 import org.ektorp.CouchDbInstance;
 import org.ektorp.http.HttpClient;
@@ -11,9 +12,9 @@ import java.net.MalformedURLException;
 public class Connector {
 
     private static final String DB_URL = "http://localhost:5984";
-    private static final String DB_NAME = "example";
-    private static final String USERNAME = "nocap";
-    private static final String PASSWORD = "HugoDtc20";
+    private static final String DB_NAME = "projetdb";
+    private static final String USERNAME = "admin";
+    private static final String PASSWORD = "admin";
 
     public static CouchDbConnector connect() throws MalformedURLException {
         HttpClient httpClient = new StdHttpClient.Builder()

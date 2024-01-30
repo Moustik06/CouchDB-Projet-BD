@@ -22,6 +22,7 @@ public class Client extends CouchDbDocument {
 
     @JsonProperty("doc_type")
     private final String _type;
+
     public Client(int id, String nom, String prenom, String adresse, String telephone, String email) {
         this._id = id;
         this.nom = nom;
@@ -34,7 +35,7 @@ public class Client extends CouchDbDocument {
         this.setId(String.valueOf(id));
     }
 
-    public Client(){
+    public Client() {
         this._id = 0;
         this.nom = "";
         this.prenom = "";
@@ -44,7 +45,7 @@ public class Client extends CouchDbDocument {
         this._type = "client";
     }
 
-    public ArrayList<String> getData(){
+    public ArrayList<String> getData() {
         ArrayList<String> data = new ArrayList<>();
         data.add(String.valueOf(this._id));
         data.add(this.nom);
@@ -54,7 +55,6 @@ public class Client extends CouchDbDocument {
         data.add(this.email);
         return data;
     }
-
 
     public String getNom() {
         return nom;
@@ -70,5 +70,9 @@ public class Client extends CouchDbDocument {
 
     public String getAdresse() {
         return adresse;
+    }
+
+    public String getTelephone() {
+        return telephone;
     }
 }

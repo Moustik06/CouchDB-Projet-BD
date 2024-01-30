@@ -10,9 +10,65 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class LocationDAO extends BaseDAO{
+public class LocationDAO extends BaseDAO {
 
-    public List<Location> getAllLocations(){
+    // retourne les locations en fonction du critère
+    public List<Location> getLocationByCriteria(String criteria, String value) {
+        ViewQuery query = new ViewQuery().designDocId("_design/Location").viewName("_location");
+
+        ViewResult result = db.queryView(query);
+
+        List<Location> locations = new ArrayList<Location>();
+
+        for (ViewResult.Row row : result.getRows()) {
+            Location location = db.get(Location.class, row.getId());
+            if (criteria.equals("idClient")) {
+                if (location.getIdClient() == Integer.parseInt(value)) {
+                    locations.add(location);
+                }
+            } else if (criteria.equals("idVehicule")) {
+                if (location.getIdVehicule() == Integer.parseInt(value)) {
+                    locations.add(location);
+                }
+            } else if (criteria.equals("idAgence")) {
+                if (location.getIdAgence() == Integer.parseInt(value)) {
+                    locations.add(location);
+                }
+            } else if (criteria.equals("idEmploye")) {
+                if (location.getIdEmploye() == Integer.parseInt(value)) {
+                    locations.add(location);
+                }
+            } else if (criteria.equals("dateDebut")) {
+                if (location.getDateDebut().equals(value)) {
+                    locations.add(location);
+                }
+            } else if (criteria.equals("dateFin")) {
+                if (location.getDateFin().equals(value)) {
+                    locations.add(location);
+                }
+            } else if (criteria.equals("prixTTC")) {
+                if (location.getPrixTTC() == Double.parseDouble(value)) {
+                    locations.add(location);
+                }
+            } else if (criteria.equals("idParkingRecup")) {
+                if (location.getIdParkingRecup() == Integer.parseInt(value)) {
+                    locations.add(location);
+                }
+            } else if (criteria.equals("idParkingRendu")) {
+                if (location.getIdParkingRendu() == Integer.parseInt(value)) {
+                    locations.add(location);
+                }
+            } else if (criteria.equals("id")) {
+                if (location.get_id() == Integer.parseInt(value)) {
+                    locations.add(location);
+                }
+            }
+        }
+
+        return locations;
+    }
+
+    public List<Location> getAllLocations() {
         ViewQuery query = new ViewQuery().designDocId("_design/Location").viewName("_location");
         ViewResult result = db.queryView(query);
 
@@ -26,7 +82,7 @@ public class LocationDAO extends BaseDAO{
         return locations;
     }
 
-    public List<Location> getLocationsByClient(int idClient){
+    public List<Location> getLocationsByClient(int idClient) {
         ViewQuery query = new ViewQuery().designDocId("_design/Location").viewName("_location");
 
         ViewResult result = db.queryView(query);
@@ -35,7 +91,7 @@ public class LocationDAO extends BaseDAO{
 
         for (ViewResult.Row row : result.getRows()) {
             Location location = db.get(Location.class, row.getId());
-            if(location.getIdClient() == idClient){
+            if (location.getIdClient() == idClient) {
                 locations.add(location);
             }
         }
@@ -44,7 +100,7 @@ public class LocationDAO extends BaseDAO{
 
     }
 
-    public List<Location> getLocationsByVehicule(int idVehicule){
+    public List<Location> getLocationsByVehicule(int idVehicule) {
         ViewQuery query = new ViewQuery().designDocId("_design/Location").viewName("_location");
 
         ViewResult result = db.queryView(query);
@@ -53,7 +109,7 @@ public class LocationDAO extends BaseDAO{
 
         for (ViewResult.Row row : result.getRows()) {
             Location location = db.get(Location.class, row.getId());
-            if(location.getIdVehicule() == idVehicule){
+            if (location.getIdVehicule() == idVehicule) {
                 locations.add(location);
             }
         }
@@ -62,7 +118,7 @@ public class LocationDAO extends BaseDAO{
 
     }
 
-    public List<Location> getLocationsByAgence(int idAgence){
+    public List<Location> getLocationsByAgence(int idAgence) {
         ViewQuery query = new ViewQuery().designDocId("_design/Location").viewName("_location");
 
         ViewResult result = db.queryView(query);
@@ -71,7 +127,7 @@ public class LocationDAO extends BaseDAO{
 
         for (ViewResult.Row row : result.getRows()) {
             Location location = db.get(Location.class, row.getId());
-            if(location.getIdAgence() == idAgence){
+            if (location.getIdAgence() == idAgence) {
                 locations.add(location);
             }
         }
@@ -80,7 +136,7 @@ public class LocationDAO extends BaseDAO{
 
     }
 
-    public List<Location> getLocationsByEmploye(int idEmploye){
+    public List<Location> getLocationsByEmploye(int idEmploye) {
         ViewQuery query = new ViewQuery().designDocId("_design/Location").viewName("_location");
 
         ViewResult result = db.queryView(query);
@@ -89,7 +145,7 @@ public class LocationDAO extends BaseDAO{
 
         for (ViewResult.Row row : result.getRows()) {
             Location location = db.get(Location.class, row.getId());
-            if(location.getIdEmploye() == idEmploye){
+            if (location.getIdEmploye() == idEmploye) {
                 locations.add(location);
             }
         }
@@ -98,7 +154,7 @@ public class LocationDAO extends BaseDAO{
 
     }
 
-    public List<Location> getLocationSortedByPrice(){
+    public List<Location> getLocationSortedByPrice() {
         ViewQuery query = new ViewQuery().designDocId("_design/Location").viewName("_location");
 
         ViewResult result = db.queryView(query);
@@ -115,7 +171,7 @@ public class LocationDAO extends BaseDAO{
         return locations;
     }
 
-    public List<Location> getLocationSortedByDate(){
+    public List<Location> getLocationSortedByDate() {
         ViewQuery query = new ViewQuery().designDocId("_design/Location").viewName("_location");
 
         ViewResult result = db.queryView(query);

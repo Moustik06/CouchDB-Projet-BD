@@ -83,4 +83,12 @@ public class Vehicule extends CouchDbDocument {
     public String getPlaque_imat() {
         return plaque_imat;
     }
+
+    public double getCaution() {
+        return caution;
+    }
+
+    public int get_id() {
+        return _id;
+    }
 }

@@ -25,6 +25,7 @@ public class Employer extends CouchDbDocument {
 
     @JsonProperty("doc_type")
     private final String _type;
+
     public Employer(int _id, int _id_agence, String nom, String prenom, String adresse, String tel, String emploi) {
         this._id = _id;
         this._id_agence = _id_agence;
@@ -37,7 +38,7 @@ public class Employer extends CouchDbDocument {
         this.setId(String.valueOf(_id));
     }
 
-    public Employer(){
+    public Employer() {
         this._id = 0;
         this._id_agence = 0;
         this.nom = "";
@@ -48,7 +49,7 @@ public class Employer extends CouchDbDocument {
         this._type = "employer";
     }
 
-    public ArrayList<String> getData(){
+    public ArrayList<String> getData() {
         ArrayList<String> data = new ArrayList<>();
         data.add(String.valueOf(this._id));
         data.add(String.valueOf(this._id_agence));
@@ -75,5 +76,13 @@ public class Employer extends CouchDbDocument {
 
     public String getPrenom() {
         return this.prenom;
+    }
+
+    public String getAdresse() {
+        return this.adresse;
+    }
+
+    public String getTel() {
+        return this.tel;
     }
 }

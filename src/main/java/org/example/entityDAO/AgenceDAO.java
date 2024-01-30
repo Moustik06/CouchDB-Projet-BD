@@ -13,10 +13,49 @@ import java.util.List;
 
 public class AgenceDAO extends BaseDAO {
 
-    //-design/Agence
-    //_agence
+    // -design/Agence
+    // _agence
 
-    //affihcer les agences
+    // retourne les agences en fonction du critère
+    public List<Agence> getAgenceByCriteria(String criteria, String value) {
+        ViewQuery query = new ViewQuery().designDocId("_design/Agence").viewName("_agence");
+        ViewResult result = db.queryView(query);
+
+        List<Agence> agences = new ArrayList<Agence>();
+
+        for (ViewResult.Row row : result.getRows()) {
+            Agence agence = db.get(Agence.class, row.getId());
+            if (criteria.equals("nom")) {
+                if (agence.getNom().equals(value)) {
+                    agences.add(agence);
+                }
+            } else if (criteria.equals("adresse")) {
+                if (agence.getAdresse().equals(value)) {
+                    agences.add(agence);
+                }
+            } else if (criteria.equals("nombreEmploye")) {
+                if (agence.getNombreEmploye() == Integer.parseInt(value)) {
+                    agences.add(agence);
+                }
+            } else if (criteria.equals("nombreClients")) {
+                if (agence.getNombreClients() == Integer.parseInt(value)) {
+                    agences.add(agence);
+                }
+            } else if (criteria.equals("id")) {
+                if (agence.getId().equals(value)) {
+                    agences.add(agence);
+                }
+            } else if (criteria.equals("telephone")) {
+                if (agence.getTelephone().equals(value)) {
+                    agences.add(agence);
+                }
+            }
+        }
+
+        return agences;
+    }
+
+    // afficher les agences
     public List<Agence> getAllAgence() {
         ViewQuery query = new ViewQuery().designDocId("_design/Agence").viewName("_agence");
         ViewResult result = db.queryView(query);
@@ -31,7 +70,7 @@ public class AgenceDAO extends BaseDAO {
         return agences;
     }
 
-    //afficher les agences par ordre alphabétique
+    // afficher les agences par ordre alphabétique
     public List<Agence> getAllAgenceByAlphabeticalOrder() {
         ViewQuery query = new ViewQuery().designDocId("_design/Agence").viewName("_agence");
         ViewResult result = db.queryView(query);
@@ -48,7 +87,7 @@ public class AgenceDAO extends BaseDAO {
         return agences;
     }
 
-    //afficher les agences par nombre d'employés ordre croissant
+    // afficher les agences par nombre d'employés ordre croissant
     public List<Agence> getAllAgenceByNbEmploye() {
         ViewQuery query = new ViewQuery().designDocId("_design/Agence").viewName("_agence");
         ViewResult result = db.queryView(query);
@@ -65,7 +104,7 @@ public class AgenceDAO extends BaseDAO {
         return agences;
     }
 
-    //afficher les agences par nombre de clients ordre décroissant
+    // afficher les agences par nombre de clients ordre décroissant
     public List<Agence> getAllAgenceByNbClient() {
         ViewQuery query = new ViewQuery().designDocId("_design/Agence").viewName("_agence");
         ViewResult result = db.queryView(query);
@@ -82,7 +121,7 @@ public class AgenceDAO extends BaseDAO {
         return agences;
     }
 
-    //afficher agence par un id donne
+    // afficher agence par un id donne
     public Agence getAgenceById(int id) {
         ViewQuery query = new ViewQuery().designDocId("_design/Agence").viewName("_agence");
         ViewResult result = db.queryView(query);
