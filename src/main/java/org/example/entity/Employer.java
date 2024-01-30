@@ -85,4 +85,8 @@ public class Employer extends CouchDbDocument {
     public String getTel() {
         return this.tel;
     }
+
+    public String getJob() {
+        return this.emploi;
+    }
 }

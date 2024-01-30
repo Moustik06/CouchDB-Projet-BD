@@ -43,7 +43,6 @@ public class Reader {
                 id_employerList.add(Integer.parseInt(s.trim()));
             }
 
-
             // Create Agence object and add to the list
             Agence agence = new Agence(id, id_employerList, id_parking, nom, adresse, telephone);
             id++;
