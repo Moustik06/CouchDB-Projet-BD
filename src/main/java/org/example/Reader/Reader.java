@@ -18,7 +18,7 @@ public class Reader {
         String file = "src/main/resources/AgenceData.json";
         String json = new String(Files.readAllBytes(Paths.get(file)));
 
-        // Create a JSONArray from the JSON string
+        // Create a JSONArray from the JSON String
         JSONArray jsonArray = new JSONArray(json);
 
         List<Agence> agenceList = new ArrayList<>();
