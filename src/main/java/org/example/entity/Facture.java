@@ -2,6 +2,7 @@ package org.example.entity;
 
 import com.fasterxml.jackson.annotation.*;
 import org.ektorp.support.CouchDbDocument;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -11,14 +12,10 @@ public class Facture extends CouchDbDocument {
     private final int _id;
     @JsonProperty("idLocation")
     private final int _idLocation;
-
-    @JsonProperty("idAgence")
-    private final int idAgence;
     @JsonProperty("date")
     private final String date;
     @JsonProperty("totalTTC")
     private final double totalTTC;
-
     @JsonProperty("acquitte")
     private final boolean acquitte;
     @JsonProperty("doc_type")
@@ -27,7 +24,6 @@ public class Facture extends CouchDbDocument {
     public Facture(int _id, int _idLocation, String date, double totalTTC, boolean acquitte) {
         this._id = _id;
         this._idLocation = _idLocation;
-        this.idAgence = 0;
         this.date = date;
         this.totalTTC = totalTTC;
         this.acquitte = acquitte;
@@ -38,7 +34,6 @@ public class Facture extends CouchDbDocument {
     public Facture() {
         this._id = 0;
         this._idLocation = 0;
-        this.idAgence = 0;
         this.date = "";
         this.totalTTC = 0;
         this.acquitte = false;
@@ -60,7 +55,7 @@ public class Facture extends CouchDbDocument {
         return _idLocation;
     }
 
-    public double getTotalTTC() {
+    public double getPrixTTC() {
         return totalTTC;
     }
 

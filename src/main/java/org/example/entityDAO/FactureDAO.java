@@ -6,7 +6,9 @@ import org.example.entity.Facture;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FactureDAO extends BaseDAO {
 
@@ -34,7 +36,7 @@ public class FactureDAO extends BaseDAO {
                     factures.add(facture);
                 }
             } else if (criteria.equals("prixTTC")) {
-                if (facture.getTotalTTC() == Double.parseDouble(value)) {
+                if (facture.getPrixTTC() == Double.parseDouble(value)) {
                     factures.add(facture);
                 }
             } else if (criteria.equals("id")) {
@@ -108,7 +110,7 @@ public class FactureDAO extends BaseDAO {
             factures.add(facture);
         }
 
-        factures.sort(Comparator.comparingDouble(Facture::getTotalTTC).reversed());
+        factures.sort(Comparator.comparingDouble(Facture::getPrixTTC).reversed());
 
         return factures;
     }
@@ -145,5 +147,21 @@ public class FactureDAO extends BaseDAO {
         }
 
         return factures;
+    }
+
+    public Map<String, Double> montantTotalFacturesParClient() {
+        ViewQuery query = new ViewQuery()
+                .designDocId("_design/Facture")
+                .viewName("montantParClient")
+                .group(true);
+
+        ViewResult result = db.queryView(query);
+        Map<String, Double> montantParClient = new HashMap<>();
+
+        for (ViewResult.Row row : result.getRows()) {
+            montantParClient.put(row.getKey(), Double.parseDouble(row.getValue()));
+        }
+
+        return montantParClient;
     }
 }

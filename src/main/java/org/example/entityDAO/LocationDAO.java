@@ -7,6 +7,7 @@ import org.example.entity.Location;
 import org.example.entity.Parking;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
@@ -186,5 +187,25 @@ public class LocationDAO extends BaseDAO {
         locations.sort((o1, o2) -> Integer.compare(o1.getDateDebut().compareTo(o2.getDateDebut()), 0));
 
         return locations;
+    }
+
+    public List<Location> findLocationsByAgencyWithPriceAbove(int idAgence, double minPrice) {
+        ViewQuery query = new ViewQuery()
+                .designDocId("_design/Location")
+                .viewName("byAgencyAndPrice")
+                .startKey(Arrays.asList(idAgence, minPrice))
+                .endKey(Arrays.asList(idAgence, Double.MAX_VALUE));
+
+        List<Location> filteredLocations = new ArrayList<>();
+        ViewResult result = db.queryView(query);
+
+        for (ViewResult.Row row : result.getRows()) {
+            Location location = db.get(Location.class, row.getId());
+            if (location.getPrixTTC() > minPrice && location.getIdAgence() == idAgence) {
+                filteredLocations.add(location);
+            }
+        }
+
+        return filteredLocations;
     }
 }

@@ -23,7 +23,7 @@ public class Location extends CouchDbDocument {
     private final String date_fin;
     @JsonProperty("id_parkingRecup")
     private final int _id_parkingRecup;
-    @JsonProperty("id_parkingRendu")
+    @JsonProperty("_id_parkingRendu")
     private final int _id_parkingRendu;
     @JsonProperty("prixTTC")
     private final double prix_ttc;
@@ -79,42 +79,42 @@ public class Location extends CouchDbDocument {
     }
 
     public int getIdClient() {
-        return _id_client;
+        return this._id_client;
     }
 
     public int getIdVehicule() {
-        return _id_vehicule;
+        return this._id_vehicule;
     }
 
     public int getIdAgence() {
-        return _id_agence;
+        return this._id_agence;
     }
 
     public int getIdEmploye() {
-        return _id_employe;
+        return this._id_employe;
     }
 
     public double getPrixTTC() {
-        return prix_ttc;
+        return this.prix_ttc;
     }
 
     public String getDateDebut() {
-        return date_debut;
+        return this.date_debut;
     }
 
     public String getDateFin() {
-        return date_fin;
+        return this.date_fin;
     }
 
     public int getIdParkingRecup() {
-        return _id_parkingRecup;
+        return this._id_parkingRecup;
     }
 
     public int getIdParkingRendu() {
-        return _id_parkingRendu;
+        return this._id_parkingRendu;
     }
 
     public int get_id() {
-        return _id;
+        return this._id;
     }
 }

@@ -13,9 +13,14 @@ public class CouchJava {
     public static void main(String[] args) throws IOException {
         VehiculeDAO vehiculeDAO = new VehiculeDAO();
         AgenceDAO angenceDAO = new AgenceDAO();
+        LocationDAO locationDAO = new LocationDAO();
+        FactureDAO factureDAO = new FactureDAO();
         // System.err.println(vehiculeDAO.marqueModelePlusLoues());//
         // vehiculesParPrixEtAgence(1000000, "Joséphine"));
-        System.err.println(vehiculeDAO.vehiculesParPrixEtAgence(10000.0, "KÃ©vina").get(0).getData());
+        System.err.println(locationDAO.findLocationsByAgencyWithPriceAbove(2, 10.0));
+        // System.err.println(factureDAO.montantTotalFacturesParClient());
+        // System.err.println(vehiculeDAO.vehiculesParPrixEtAgence(10000.0,
+        // "KÃ©vina").get(0).getData());
         /*
          * AgenceDAO agenceDAO = new AgenceDAO();
          *
@@ -454,10 +459,6 @@ public class CouchJava {
          * }
          *
          */
-
-
-
-
 
     }
 
