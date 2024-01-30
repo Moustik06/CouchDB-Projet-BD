@@ -34,7 +34,7 @@ public class FactureDAO extends BaseDAO {
                     factures.add(facture);
                 }
             } else if (criteria.equals("prixTTC")) {
-                if (facture.getPrixTTC() == Double.parseDouble(value)) {
+                if (facture.getTotalTTC() == Double.parseDouble(value)) {
                     factures.add(facture);
                 }
             } else if (criteria.equals("id")) {
