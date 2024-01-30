@@ -9,7 +9,48 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class EmployerDAO extends BaseDAO{
+public class EmployerDAO extends BaseDAO {
+
+    // retourne les employés en fonction du critère
+    public List<Employer> getEmployerByCriteria(String criteria) {
+        ViewQuery query = new ViewQuery().designDocId("_design/Employer").viewName("_employer");
+
+        ViewResult result = db.queryView(query);
+
+        List<Employer> employers = new ArrayList<Employer>();
+
+        for (ViewResult.Row row : result.getRows()) {
+            Employer employer = db.get(Employer.class, row.getId());
+            if (criteria.equals("id")) {
+                if (Integer.parseInt(employer.getId()) == Integer.parseInt(criteria)) {
+                    employers.add(employer);
+                }
+            } else if (criteria.equals("nom")) {
+                if (employer.getNom().equals(criteria)) {
+                    employers.add(employer);
+                }
+            } else if (criteria.equals("prenom")) {
+                if (employer.getPrenom().equals(criteria)) {
+                    employers.add(employer);
+                }
+            } else if (criteria.equals("job")) {
+                if (employer.getJob().equals(criteria)) {
+                    employers.add(employer);
+                }
+            } else if (criteria.equals("idAgence")) {
+                if (employer.getIdAgence() == Integer.parseInt(criteria)) {
+                    employers.add(employer);
+                }
+            } else if (criteria.equals("location")) {
+                if (employer.getAdresse().equals(criteria)) {
+                    employers.add(employer);
+                }
+            }
+        }
+
+        return employers;
+
+    }
 
     public List<Employer> getAllEmployer() {
         ViewQuery query = new ViewQuery().designDocId("_design/Employer").viewName("_employer");
@@ -44,6 +85,7 @@ public class EmployerDAO extends BaseDAO{
         return employers;
 
     }
+
     public List<Employer> getEmployerByJob(String job) {
         ViewQuery query = new ViewQuery().designDocId("_design/Employer").viewName("_employer");
 
@@ -80,7 +122,7 @@ public class EmployerDAO extends BaseDAO{
 
     }
 
-        public List<Employer> getEmployersSortedByJob() {
+    public List<Employer> getEmployersSortedByJob() {
         ViewQuery query = new ViewQuery().designDocId("_design/Employer").viewName("_employer");
 
         ViewResult result = db.queryView(query);
@@ -151,7 +193,5 @@ public class EmployerDAO extends BaseDAO{
         return employers;
 
     }
-
-
 
 }

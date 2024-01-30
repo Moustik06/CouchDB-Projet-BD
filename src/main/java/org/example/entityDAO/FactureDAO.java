@@ -9,9 +9,46 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class FactureDAO extends BaseDAO{
+public class FactureDAO extends BaseDAO {
 
-    public List<Facture> getAllFactures(){
+    // retourne les factures en fonction du critère
+
+    public List<Facture> getFactureByCriteria(String criteria, String value) {
+        ViewQuery query = new ViewQuery().designDocId("_design/Facture").viewName("_facture");
+
+        ViewResult result = db.queryView(query);
+
+        List<Facture> factures = new ArrayList<Facture>();
+
+        for (ViewResult.Row row : result.getRows()) {
+            Facture facture = db.get(Facture.class, row.getId());
+            if (criteria.equals("idLocation")) {
+                if (facture.getIdLocation() == Integer.parseInt(value)) {
+                    factures.add(facture);
+                }
+            } else if (criteria.equals("idAgence")) {
+                if (facture.getIdAgence() == Integer.parseInt(value)) {
+                    factures.add(facture);
+                }
+            } else if (criteria.equals("date")) {
+                if (facture.getDate().equals(value)) {
+                    factures.add(facture);
+                }
+            } else if (criteria.equals("prixTTC")) {
+                if (facture.getPrixTTC() == Double.parseDouble(value)) {
+                    factures.add(facture);
+                }
+            } else if (criteria.equals("id")) {
+                if (facture.get_id() == Integer.parseInt(value)) {
+                    factures.add(facture);
+                }
+            }
+        }
+
+        return factures;
+    }
+
+    public List<Facture> getAllFactures() {
         ViewQuery query = new ViewQuery().designDocId("_design/Facture").viewName("_facture");
         ViewResult result = db.queryView(query);
 
@@ -25,7 +62,7 @@ public class FactureDAO extends BaseDAO{
         return factures;
     }
 
-    public List<Facture> getFactureByLocation(int idLocation){
+    public List<Facture> getFactureByLocation(int idLocation) {
         ViewQuery query = new ViewQuery().designDocId("_design/Facture").viewName("_facture");
 
         ViewResult result = db.queryView(query);
@@ -34,7 +71,7 @@ public class FactureDAO extends BaseDAO{
 
         for (ViewResult.Row row : result.getRows()) {
             Facture facture = db.get(Facture.class, row.getId());
-            if(facture.getIdLocation() == idLocation){
+            if (facture.getIdLocation() == idLocation) {
                 factures.add(facture);
             }
         }
@@ -43,7 +80,7 @@ public class FactureDAO extends BaseDAO{
 
     }
 
-    public Facture getFactureById(int idFacture){
+    public Facture getFactureById(int idFacture) {
         ViewQuery query = new ViewQuery().designDocId("_design/Facture").viewName("_facture");
 
         ViewResult result = db.queryView(query);
@@ -52,7 +89,7 @@ public class FactureDAO extends BaseDAO{
 
         for (ViewResult.Row row : result.getRows()) {
             facture = db.get(Facture.class, row.getId());
-            if(Integer.parseInt(facture.getId()) == idFacture){
+            if (Integer.parseInt(facture.getId()) == idFacture) {
                 break;
             }
         }
@@ -60,7 +97,7 @@ public class FactureDAO extends BaseDAO{
         return facture;
     }
 
-    public List<Facture> getFacturesSortedByPrices(){
+    public List<Facture> getFacturesSortedByPrices() {
         ViewQuery query = new ViewQuery().designDocId("_design/Facture").viewName("_facture");
 
         ViewResult result = db.queryView(query);
@@ -77,7 +114,7 @@ public class FactureDAO extends BaseDAO{
         return factures;
     }
 
-    public List<Facture> getFacturesByDate(String date){
+    public List<Facture> getFacturesByDate(String date) {
         ViewQuery query = new ViewQuery().designDocId("_design/Facture").viewName("_facture");
 
         ViewResult result = db.queryView(query);
@@ -86,7 +123,7 @@ public class FactureDAO extends BaseDAO{
 
         for (ViewResult.Row row : result.getRows()) {
             Facture facture = db.get(Facture.class, row.getId());
-            if(facture.getDate().equals(date)){
+            if (facture.getDate().equals(date)) {
                 factures.add(facture);
             }
         }
@@ -94,7 +131,7 @@ public class FactureDAO extends BaseDAO{
         return factures;
     }
 
-    public List<Facture> getFacturesByDateAndAgence(String date, int idAgence){
+    public List<Facture> getFacturesByDateAndAgence(String date, int idAgence) {
         ViewQuery query = new ViewQuery().designDocId("_design/Facture").viewName("_facture");
 
         ViewResult result = db.queryView(query);
@@ -103,7 +140,7 @@ public class FactureDAO extends BaseDAO{
 
         for (ViewResult.Row row : result.getRows()) {
             Facture facture = db.get(Facture.class, row.getId());
-            if(facture.getDate().equals(date) && facture.getIdAgence() == idAgence){
+            if (facture.getDate().equals(date) && facture.getIdAgence() == idAgence) {
                 factures.add(facture);
             }
         }

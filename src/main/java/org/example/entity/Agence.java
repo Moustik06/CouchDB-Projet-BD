@@ -49,7 +49,7 @@ public class Agence extends CouchDbDocument {
         this.setId(String.valueOf(id));
     }
 
-    public Agence(){
+    public Agence() {
         this._type = "agence";
         this._id = 0;
         this._id_employer = new ArrayList<Integer>();
@@ -75,12 +75,11 @@ public class Agence extends CouchDbDocument {
         return (U) this.nom;
     }
 
-    //get nb employe
+    // get nb employe
 
     public int getNombreEmploye() {
         return this.nbEmploye;
     }
-
 
     public void setNombreClients(int nombreClients) {
         this.nbClients = nombreClients;
@@ -88,5 +87,13 @@ public class Agence extends CouchDbDocument {
 
     public int getNombreClients() {
         return this.nbClients;
+    }
+
+    public String getAdresse() {
+        return this.adresse;
+    }
+
+    public String getTelephone() {
+        return this.telephone;
     }
 }

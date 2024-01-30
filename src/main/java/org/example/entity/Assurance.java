@@ -21,6 +21,7 @@ public class Assurance extends CouchDbDocument {
 
     @JsonProperty("doc_type")
     private final String _type;
+
     public Assurance(int _id, int _id_vehicule, String type, String nom_assurance, double prix_assurance) {
         this._id = _id;
         this._id_vehicule = _id_vehicule;
@@ -32,7 +33,7 @@ public class Assurance extends CouchDbDocument {
         this.setId(String.valueOf(_id));
     }
 
-    public Assurance(){
+    public Assurance() {
         this._type = "assurance";
         this._id = 0;
         this._id_vehicule = 0;
@@ -57,7 +58,7 @@ public class Assurance extends CouchDbDocument {
 
     // getPrix_assurance cest un double
     public double getPrix_assurance() {
-        return  prix_assurance;
+        return prix_assurance;
     }
 
     public String getType() {
@@ -66,5 +67,13 @@ public class Assurance extends CouchDbDocument {
 
     public int get_id() {
         return _id;
+    }
+
+    public int get_id_vehicule() {
+        return _id_vehicule;
+    }
+
+    public String get_type() {
+        return _type;
     }
 }

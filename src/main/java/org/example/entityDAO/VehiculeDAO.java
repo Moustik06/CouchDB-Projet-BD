@@ -19,6 +19,50 @@ import org.json.JSONObject;
 
 public class VehiculeDAO extends BaseDAO {
 
+    // retourne les voitures en fonction du critère
+    public List<Vehicule> getVehiculeByCriteria(String criteria, String value) {
+        ViewQuery query = new ViewQuery().designDocId("_design/Vehicule").viewName("_vehicule");
+
+        ViewResult result = db.queryView(query);
+
+        List<Vehicule> vehicules = new ArrayList<Vehicule>();
+
+        for (ViewResult.Row row : result.getRows()) {
+            Vehicule vehicule = db.get(Vehicule.class, row.getId());
+            if (criteria.equals("modele")) {
+                if (vehicule.getModele().equals(value)) {
+                    vehicules.add(vehicule);
+                }
+            } else if (criteria.equals("marque")) {
+                if (vehicule.getMarque().equals(value)) {
+                    vehicules.add(vehicule);
+                }
+            } else if (criteria.equals("imat")) {
+                if (vehicule.getPlaque_imat().equals(value)) {
+                    vehicules.add(vehicule);
+                }
+            } else if (criteria.equals("id_agence")) {
+                if (vehicule.getId_agence() == Integer.parseInt(value)) {
+                    vehicules.add(vehicule);
+                }
+            } else if (criteria.equals("prix")) {
+                if (vehicule.getPrix() == Double.parseDouble(value)) {
+                    vehicules.add(vehicule);
+                }
+            } else if (criteria.equals("id")) {
+                if (vehicule.get_id() == Integer.parseInt(value)) {
+                    vehicules.add(vehicule);
+                }
+            } else if (criteria.equals("id_agence")) {
+                if (vehicule.getId_agence() == Integer.parseInt(value)) {
+                    vehicules.add(vehicule);
+                }
+            }
+        }
+
+        return vehicules;
+    }
+
     public List<Vehicule> getAllVehicule() {
         ViewQuery query = new ViewQuery().designDocId("_design/Vehicule").viewName("_vehicule");
         ViewResult result = db.queryView(query);
@@ -106,29 +150,29 @@ public class VehiculeDAO extends BaseDAO {
     }
 
     public List<Map<String, Object>> marqueModelePlusLoues() {
+        // Récupérer les ID de véhicules les plus loués
         ViewQuery query = new ViewQuery()
                 .designDocId("_design/Location")
                 .viewName("countByMarqueModele")
-                .groupLevel(2); // Grouper par marque et modèle
-
+                .group(true)
+                .groupLevel(1);
         ViewResult result = db.queryView(query);
-        List<Map<String, Object>> marqueModeleCounts = new ArrayList<>();
 
+        // Stocker les ID de véhicules et leur compte
+        Map<String, Integer> vehiculeCounts = new HashMap<>();
         for (ViewResult.Row row : result.getRows()) {
+            vehiculeCounts.put(row.getKey(), row.getValueAsInt());
+        }
+
+        // Récupérer les détails des véhicules et construire la liste finale
+        List<Map<String, Object>> marqueModeleCounts = new ArrayList<>();
+        for (String vehiculeId : vehiculeCounts.keySet()) {
+            Vehicule vehicule = db.get(Vehicule.class, vehiculeId);
             Map<String, Object> marqueModeleCount = new HashMap<>();
-            Object key = row.getKey();
-
-            if (key instanceof List) {
-                @SuppressWarnings("unchecked")
-                List<String> keyList = (List<String>) key;
-
-                if (keyList.size() >= 2) {
-                    marqueModeleCount.put("marque", keyList.get(0));
-                    marqueModeleCount.put("modele", keyList.get(1));
-                    marqueModeleCount.put("count", row.getValueAsInt());
-                    marqueModeleCounts.add(marqueModeleCount);
-                }
-            }
+            marqueModeleCount.put("marque", vehicule.getMarque());
+            marqueModeleCount.put("modele", vehicule.getModele());
+            marqueModeleCount.put("count", vehiculeCounts.get(vehiculeId));
+            marqueModeleCounts.add(marqueModeleCount);
         }
 
         // Trier par le nombre de fois louées (count) en ordre décroissant
@@ -141,21 +185,24 @@ public class VehiculeDAO extends BaseDAO {
         // Premièrement, récupérer l'ID de l'agence en fonction de son nom
         // Cela nécessite soit une requête supplémentaire, soit une structure de données
         // adaptée
-        int idAgence = 0; // méthode pour récupérer l'ID de l'agence à partir du nom
+        AgenceDAO agenceDAO = new AgenceDAO();
+        String idAgence = agenceDAO.getAgenceByCriteria("nom", nomAgence).get(0).getId(); // méthode pour récupérer l'ID
+                                                                                          // de l'agence à partir du nom
+        int idAgenceInt = Integer.parseInt(idAgence);
 
         ViewQuery query = new ViewQuery()
-                .designDocId("_design/vehicule")
+                .designDocId("_design/Vehicule")
                 .viewName("byPriceAndAgenceId")
-                .key(idAgence)
-                .startKey(Arrays.asList(idAgence, 0))
-                .endKey(Arrays.asList(idAgence, prixMax));
+                .key(idAgenceInt)
+                .startKey(Arrays.asList(idAgenceInt, 0))
+                .endKey(Arrays.asList(idAgenceInt, prixMax));
 
         List<Vehicule> vehicules = new ArrayList<>();
         ViewResult result = db.queryView(query);
 
         for (ViewResult.Row row : result.getRows()) {
             Vehicule vehicule = db.get(Vehicule.class, row.getId());
-            if (vehicule.getPrix() <= prixMax && vehicule.getId_agence() == idAgence) {
+            if (vehicule.getPrix() <= prixMax && vehicule.getId_agence() == Integer.parseInt(idAgence)) {
                 vehicules.add(vehicule);
             }
         }

@@ -31,7 +31,7 @@ public class Facture extends CouchDbDocument {
         this.setId(String.valueOf(_id));
     }
 
-    public Facture(){
+    public Facture() {
         this._id = 0;
         this._idLocation = 0;
         this.date = "";
@@ -41,8 +41,7 @@ public class Facture extends CouchDbDocument {
 
     }
 
-
-    public ArrayList<String> getData(){
+    public ArrayList<String> getData() {
         ArrayList<String> data = new ArrayList<>();
         data.add(String.valueOf(this._id));
         data.add(String.valueOf(this._idLocation));
@@ -60,12 +59,15 @@ public class Facture extends CouchDbDocument {
         return totalTTC;
     }
 
-
     public String getDate() {
         return date;
     }
 
     public int getIdAgence() {
         return _idLocation;
+    }
+
+    public int get_id() {
+        return _id;
     }
 }

@@ -30,6 +30,7 @@ public class Location extends CouchDbDocument {
 
     @JsonProperty("doc_type")
     private final String _type;
+
     public Location(int _id, int _id_client, int _id_vehicule, int _id_agence, int _id_employe, String date_debut,
             String date_fin, int _id_parkingRecup, int _id_parkingRendu, double prix_ttc) {
         this._id = _id;
@@ -47,7 +48,7 @@ public class Location extends CouchDbDocument {
 
     }
 
-    public Location(){
+    public Location() {
         this._id = 0;
         this._id_client = 0;
         this._id_vehicule = 0;
@@ -62,7 +63,7 @@ public class Location extends CouchDbDocument {
 
     }
 
-    public ArrayList<String> getData(){
+    public ArrayList<String> getData() {
         ArrayList<String> data = new ArrayList<String>();
         data.add(String.valueOf(this._id));
         data.add(String.valueOf(this._id_client));
@@ -99,5 +100,21 @@ public class Location extends CouchDbDocument {
 
     public String getDateDebut() {
         return date_debut;
+    }
+
+    public String getDateFin() {
+        return date_fin;
+    }
+
+    public int getIdParkingRecup() {
+        return _id_parkingRecup;
+    }
+
+    public int getIdParkingRendu() {
+        return _id_parkingRendu;
+    }
+
+    public int get_id() {
+        return _id;
     }
 }
