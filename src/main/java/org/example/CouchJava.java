@@ -3,13 +3,13 @@ package org.example;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.example.Reader.Reader;
 import org.example.entity.*;
 import org.example.entityDAO.*;
 
 public class CouchJava {
-
     public static void main(String[] args) throws IOException {
         VehiculeDAO vehiculeDAO = new VehiculeDAO();
         AgenceDAO angenceDAO = new AgenceDAO();
@@ -17,7 +17,7 @@ public class CouchJava {
         FactureDAO factureDAO = new FactureDAO();
         // System.err.println(vehiculeDAO.marqueModelePlusLoues());//
         // vehiculesParPrixEtAgence(1000000, "Joséphine"));
-        System.err.println(locationDAO.findLocationsByAgencyWithPriceAbove(2, 10.0));
+        //System.err.println(locationDAO.findLocationsByAgencyWithPriceAbove(2, 10.0));
         // System.err.println(factureDAO.montantTotalFacturesParClient());
         // System.err.println(vehiculeDAO.vehiculesParPrixEtAgence(10000.0,
         // "KÃ©vina").get(0).getData());
@@ -459,7 +459,10 @@ public class CouchJava {
          * }
          *
          */
-
+        //vehiculesParPrixEtAgence
+       // System.err.println(vehiculeDAO.vehiculesParPrixEtAgence(10000.0, "Marie-noël").get(0).getData());
+        //findLocationsByAgencyWithPriceAbove
+        //System.err.println(locationDAO.findLocationsByAgencyWithPriceAbove(1, 225.0)); renvoie rien
     }
 
 }

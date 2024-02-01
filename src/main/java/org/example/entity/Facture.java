@@ -70,4 +70,6 @@ public class Facture extends CouchDbDocument {
     public int get_id() {
         return _id;
     }
+
+
 }

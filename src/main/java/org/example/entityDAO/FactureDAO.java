@@ -149,19 +149,9 @@ public class FactureDAO extends BaseDAO {
         return factures;
     }
 
-    public Map<String, Double> montantTotalFacturesParClient() {
-        ViewQuery query = new ViewQuery()
-                .designDocId("_design/Facture")
-                .viewName("montantParClient")
-                .group(true);
+    //aucune inspi jen ai marre
 
-        ViewResult result = db.queryView(query);
-        Map<String, Double> montantParClient = new HashMap<>();
 
-        for (ViewResult.Row row : result.getRows()) {
-            montantParClient.put(row.getKey(), Double.parseDouble(row.getValue()));
-        }
 
-        return montantParClient;
-    }
+
 }

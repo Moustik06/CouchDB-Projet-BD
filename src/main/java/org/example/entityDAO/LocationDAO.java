@@ -187,6 +187,7 @@ public class LocationDAO extends BaseDAO {
         return locations;
     }
 
+    /*
     public List<Location> findLocationsByAgencyWithPriceAbove(int idAgence, double minPrice) {
         ViewQuery query = new ViewQuery()
                 .designDocId("_design/Location")
@@ -197,13 +198,20 @@ public class LocationDAO extends BaseDAO {
         List<Location> filteredLocations = new ArrayList<>();
         ViewResult result = db.queryView(query);
 
+        System.out.printf("Found %d locations\n", result.getSize());
+
         for (ViewResult.Row row : result.getRows()) {
             Location location = db.get(Location.class, row.getId());
-            if (location.getPrixTTC() > minPrice && location.getIdAgence() == idAgence) {
+            System.out.println(location.getIdAgence()+1);
+            System.out.println(idAgence);
+            System.out.println(location.getPrixTTC());
+            System.out.println(minPrice);
+            if (location.getPrixTTC() >= minPrice && (location.getIdAgence()+1) == idAgence) {
                 filteredLocations.add(location);
             }
         }
 
         return filteredLocations;
-    }
+    }*/
+
 }
