@@ -2,9 +2,7 @@ package org.example.entityDAO;
 
 import org.ektorp.ViewQuery;
 import org.ektorp.ViewResult;
-import org.example.entity.Assurance;
 import org.example.entity.Location;
-import org.example.entity.Parking;
 
 import java.util.ArrayList;
 import java.util.Arrays;

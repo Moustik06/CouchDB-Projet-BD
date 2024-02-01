@@ -1,10 +1,12 @@
 package org.example.entity;
 
 import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.ektorp.support.CouchDbDocument;
 
 import java.util.ArrayList;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Location extends CouchDbDocument {
 
     @JsonProperty("_id")
