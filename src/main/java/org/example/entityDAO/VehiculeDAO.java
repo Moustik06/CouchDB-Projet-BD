@@ -149,45 +149,13 @@ public class VehiculeDAO extends BaseDAO {
 
     }
 
-    public List<Map<String, Object>> marqueModelePlusLoues() {
-        // Récupérer les ID de véhicules les plus loués
-        ViewQuery query = new ViewQuery()
-                .designDocId("_design/Location")
-                .viewName("countByMarqueModele")
-                .group(true)
-                .groupLevel(1);
-        ViewResult result = db.queryView(query);
-
-        // Stocker les ID de véhicules et leur compte
-        Map<String, Integer> vehiculeCounts = new HashMap<>();
-        for (ViewResult.Row row : result.getRows()) {
-            vehiculeCounts.put(row.getKey(), row.getValueAsInt());
-        }
-
-        // Récupérer les détails des véhicules et construire la liste finale
-        List<Map<String, Object>> marqueModeleCounts = new ArrayList<>();
-        for (String vehiculeId : vehiculeCounts.keySet()) {
-            Vehicule vehicule = db.get(Vehicule.class, vehiculeId);
-            Map<String, Object> marqueModeleCount = new HashMap<>();
-            marqueModeleCount.put("marque", vehicule.getMarque());
-            marqueModeleCount.put("modele", vehicule.getModele());
-            marqueModeleCount.put("count", vehiculeCounts.get(vehiculeId));
-            marqueModeleCounts.add(marqueModeleCount);
-        }
-
-        // Trier par le nombre de fois louées (count) en ordre décroissant
-        marqueModeleCounts.sort((a, b) -> (Integer) b.get("count") - (Integer) a.get("count"));
-
-        return marqueModeleCounts;
-    }
-
     public List<Vehicule> vehiculesParPrixEtAgence(double prixMax, String nomAgence) {
         // Premièrement, récupérer l'ID de l'agence en fonction de son nom
         // Cela nécessite soit une requête supplémentaire, soit une structure de données
         // adaptée
         AgenceDAO agenceDAO = new AgenceDAO();
         String idAgence = agenceDAO.getAgenceByCriteria("nom", nomAgence).get(0).getId(); // méthode pour récupérer l'ID
-                                                                                          // de l'agence à partir du nom
+        // de l'agence à partir du nom
         int idAgenceInt = Integer.parseInt(idAgence);
 
         ViewQuery query = new ViewQuery()
@@ -210,6 +178,31 @@ public class VehiculeDAO extends BaseDAO {
         return vehicules;
     }
 
+    //marche pas celle la
+    public List<Vehicule> marqueModelePlusLoues(){
+        ViewQuery query = new ViewQuery()
+                .designDocId("_design/Vehicule")
+                .viewName("countByMarqueModele");
+
+        List<Vehicule> vehicules = new ArrayList<>();
+        ViewResult result = db.queryView(query);
+
+        System.out.println(result.getRows()); // bon res
+
+        for (ViewResult.Row row : result.getRows()) {
+            // ici bug car dans les tests generer location possède un id_vehicule 1 2 3etc
+            // alors que nos id de vehicule sont de 6100 à 7100
+
+            // get the vehicule by id
+            System.out.println(row.getId());
+            Vehicule vehicule = db.get(Vehicule.class, row.getId());
+            System.out.println(vehicule);
+            vehicules.add(vehicule);
+        }
+        System.out.println(vehicules);
+
+        return vehicules;
+    }
 
 
 }

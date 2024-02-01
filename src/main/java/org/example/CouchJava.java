@@ -459,10 +459,22 @@ public class CouchJava {
          * }
          *
          */
+
+        //soucis dans tout ca
         //vehiculesParPrixEtAgence
        // System.err.println(vehiculeDAO.vehiculesParPrixEtAgence(10000.0, "Marie-noël").get(0).getData());
         //findLocationsByAgencyWithPriceAbove
         //System.err.println(locationDAO.findLocationsByAgencyWithPriceAbove(1, 225.0)); renvoie rien
+        //marqueModelePlusLoues
+        //System.err.println(vehiculeDAO.marqueModelePlusLoues());
+
+        //soucis ici ya un fdp qui a toucher un truc jarrive pas a inserer
+        //Location location = new Location(66666, 1, 6101, 1, 1, "7/16/2023", "7/9/2023", 1, 1, 225.0);
+        //locationDAO.insert(location);
+
+        //findLocationsByAgencyWithPriceAbove
+        System.err.println(locationDAO.findLocationsByAgencyWithPriceAbove(1, 225.0));
+
     }
 
 }

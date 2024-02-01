@@ -149,9 +149,4 @@ public class FactureDAO extends BaseDAO {
         return factures;
     }
 
-    //aucune inspi jen ai marre
-
-
-
-
 }

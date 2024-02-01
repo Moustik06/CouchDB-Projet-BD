@@ -37,7 +37,6 @@ public class Vehicule extends CouchDbDocument {
         this.plaque_imat = plaque_imat;
         this._type = "vehicule";
         this.setId(String.valueOf(_id));
-
     }
 
     public Vehicule() {

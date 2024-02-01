@@ -6,17 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="8891be77-89f9-41e8-b0f2-60892712da97" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Connector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Connector.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CouchJava.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/CouchJava.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entity/Facture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/entity/Facture.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entityDAO/FactureDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/entityDAO/FactureDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entity/Vehicule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/entity/Vehicule.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entityDAO/LocationDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/entityDAO/LocationDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entityDAO/VehiculeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/entityDAO/VehiculeDAO.java" afterDir="false" />
     </list>
-    <list id="65932462-b40c-40f3-ac22-024f3da3d6ea" name="Changes by Khalil" comment="" />
-    <list id="741bad05-005a-4f33-81db-77e8c2940b59" name="Changes by VDPC0886" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CouchJava.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/CouchJava.java" afterDir="false" />
+    <list id="65932462-b40c-40f3-ac22-024f3da3d6ea" name="Changes by Khalil" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entityDAO/FactureDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/entityDAO/FactureDAO.java" afterDir="false" />
     </list>
+    <list id="741bad05-005a-4f33-81db-77e8c2940b59" name="Changes by VDPC0886" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,16 +22,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/org/example/CouchJava.java">
-      <ranges>
-        <range start1="5" end1="5" start2="5" end2="6" changelist="8891be77-89f9-41e8-b0f2-60892712da97" />
-        <range start1="11" end1="12" start2="12" end2="12" changelist="741bad05-005a-4f33-81db-77e8c2940b59" />
-        <range start1="19" end1="20" start2="19" end2="20" changelist="8891be77-89f9-41e8-b0f2-60892712da97" />
-        <range start1="461" end1="462" start2="461" end2="465" changelist="8891be77-89f9-41e8-b0f2-60892712da97" />
-      </ranges>
-    </file>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
